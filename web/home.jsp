@@ -7,18 +7,25 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home</title>
-        <link rel="stylesheet" href="css/style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin tài khoản</title>
+    <link rel="stylesheet" href="css/home.css">
+</head>
     <body>
-        <div class="home_heading">
+        <div class="home-heading">
             <h1>Chào mừng bạn đến với Tada!</h1>
         </div>
-        <div class="home-page">
-            <a class="home-button" style="height:40px" href="index.jsp">Đăng nhập</a>
-            <a class="home-button" href="signup.jsp">Đăng ký</a>
+        <div class="home-body">
+            <div class="home-menu">
+                <li><a href="management.jsp">Quản lý</a></li>
+                <li><a href="algorithm.jsp">Thuật toán</a></li>
+                <li><a href="languageprocess.jsp">Xử lý ngôn ngữ tự nhiên</a></li>
+            </div>
+            <div class="home-main">
+                This is home
+            </div>
         </div>
     </body>
 </html>
