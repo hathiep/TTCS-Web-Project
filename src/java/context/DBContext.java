@@ -24,7 +24,7 @@ public class DBContext {
 //    }
     
     public Connection getConnection()throws Exception {
-        String url = "jdbc:sqlserver://DESKTOP-KN4FE7O\\TTCS_SERVER:1433;databaseName=TestDB";
+        String url = "jdbc:sqlserver://DESKTOP-KN4FE7O\\CSDLTEST2019:1433;databaseName=TestDB";
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         return DriverManager.getConnection(url, "sa", "123456");
     }   
