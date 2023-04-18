@@ -28,7 +28,7 @@
             <div class="main-block" id="request">
                 <form method="post" class="form">
             
-                    <h1 id="heading">Thuật toán tìm kiếm đường đi ngắn nhất</h1>
+                    <h2 id="heading">Thuật toán tìm kiếm đường đi ngắn nhất</h1>
 
                     <div id="form-top" class="form-block">
                         
@@ -162,7 +162,7 @@
             <div class="main-block" id="answer" >
                 <form method="post" class="form">
             
-                    <h1 id="heading">Ðáp án: Ðường đi ngắn nhất theo thuật toán</h1>
+                    <h2 id="heading">Ðáp án: Ðường đi ngắn nhất theo thuật toán</h1>
                     <div id="ans">${ans}</div>
                 </form>
             </div>
