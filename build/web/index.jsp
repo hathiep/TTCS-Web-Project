@@ -10,33 +10,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/form.css">
+    <title>Thông tin tài khoản</title>
+    <link rel="stylesheet" href="css/home.css">
 </head>
     <body>
-        <form method="post" action="login" class="form">
-            
-            <h1 id="heading">Đăng nhập</h1>
-
-            <div class="form-group">
-                <label class="form-label" for="email">Email</label>
-                <input class="form-control" id="email" name="email" type="text" placeholder="Nhập địa chỉ email" />
-                <span class="form-message" id="email_error">${email_error}</span>
+        <div class="home-heading">
+            <h1>Chào mừng bạn đến với Tada!</h1>
+        </div>
+        <div class="home-body">
+            <div class="home-menu">
+                <li><a href="/thuctapcoso/management">Quản lý</a></li>
+                <li><a href="algorithm.jsp">Thuật toán</a></li>
+                <li><a href="languageprocess.jsp">Xử lý ngôn ngữ tự nhiên</a></li>
             </div>
-
-            <div class="form-group">
-                <label class="form-label" for="password">Mật khẩu</label>
-                <input class="form-control" id="password" name="password" type="password" placeholder="Nhập mật khẩu" />
-                <span class="form-message" id="password_error">${password_error}</span>
+            <div class="home-main">
+                This is home
             </div>
-
-            <button class="form-button" id="button" type="submit" onclick="validate_Login()">Đăng nhập</button>
-        
-            <div class="form-link">
-                <label class="form-label" >Bạn chưa có tài khoản?</label>
-                <a href="signup.jsp">Đăng ký ngay</a>
-            </div>
-        </form>
+        </div>
     </body>
-<!--    <script src="js/validate.js"></script>-->
 </html>

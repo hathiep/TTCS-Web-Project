@@ -1,7 +1,11 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 
-package controller;
+package controll.management;
 
-import dao.UserDAO;
+import dao.NVDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -10,14 +14,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.User;
+import model.NV;
 
 /**
  *
  * @author havanthiep
  */
-@WebServlet(name="control", urlPatterns={"/controll"})
-public class Control extends HttpServlet {
+@WebServlet(name="UpdateServlet", urlPatterns={"/update"})
+public class UpdateServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -29,11 +33,37 @@ public class Control extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        UserDAO dao = new UserDAO();
-        List<User> list = dao.getAllUsers();
+        int id = Integer.parseInt(request.getParameter("id"));
+        String hoten = request.getParameter("hoten");
+        String ngaysinh = request.getParameter("ngaysinh");
+        String gioitinh = request.getParameter("gioitinh");
+        String sdt = request.getParameter("sdt");
+        String diachi = request.getParameter("diachi");
+        String chinhanh = request.getParameter("chinhanh");
+        String chucvu = request.getParameter("chucvu");
+        int mucluong = Integer.parseInt(request.getParameter("mucluong"));
+        String chuthich = request.getParameter("chuthich");
         
-        request.setAttribute("listUser", list);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        NVDAO dao = new NVDAO();
+        List<NV> list = dao.getAllNV();
+        if(hoten.split("\\s+").length<2){
+            request.setAttribute("error", "Vui lòng điền đầy đủ họ và tên!");
+            request.getRequestDispatcher("management").forward(request, response);
+        }
+        else{
+            int ok = 0;
+            for(NV i:list){
+                if(id == i.getId()){
+                    dao.updateNV(id, hoten, ngaysinh, gioitinh, sdt, diachi, chinhanh, chucvu, mucluong, chuthich);
+                    ok = 1;
+                    response.sendRedirect("management");
+                }
+            }
+            if(ok==0){
+                request.setAttribute("error", "Id không đúng!");
+                request.getRequestDispatcher("management.jsp").forward(request, response);
+            }
+        }
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

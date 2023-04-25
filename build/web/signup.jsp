@@ -52,7 +52,7 @@
 
             <div class="form-link">
                 <label class="form-label" >Bạn đã có tài khoản?</label>
-                <a href="index.jsp">Đăng nhập ngay</a>
+                <a href="login.jsp">Đăng nhập ngay</a>
             </div>
         </form>
     </body>

@@ -21,8 +21,8 @@
     <div class="home-body">
         <div class="home-menu">
             <ul>
-                <li><a href="home.jsp">Trang chủ</a></li>
-                <li><a href="management.jsp">Quản lý</a></li>
+                <li><a href="index.jsp">Trang chủ</a></li>
+                <li><a href="/thuctapcoso/management">Quản lý</a></li>
                 <li><a href="algorithm.jsp">Thuật toán</a></li>
             </ul>
         </div>

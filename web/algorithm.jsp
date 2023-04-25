@@ -20,19 +20,19 @@
     </div>
     <div class="home-body">
         <div class="home-menu">
-            <li><a href="home.jsp">Trang chủ</a></li>
-            <li><a href="management.jsp">Quản lý</a></li>
+            <li><a href="index.jsp">Trang chủ</a></li>
+            <li><a href="/thuctapcoso/management">Quản lý</a></li>
             <li><a href="languageprocess.jsp">Xử lý ngôn ngữ tự nhiên</a></li>
         </div>
         <div class="home-main">
             <div class="main-block" id="request">
-                <form method="post" class="form">
+                <form method="post" action="algorithmcontrol" class="form">
             
                     <h2 id="heading">Thuật toán tìm kiếm đường đi ngắn nhất</h1>
 
                     <div id="form-top" class="form-block">
                         
-                        <div class="form-item2" class="form-item1">
+                        <div class="form-item2">
                             <label class="form-label" for="type_algorithm">Thuật toán</label>
                             <div id="radio1" class="form-radio">
                                 <input type="radio" name="type_algorithm" value="1" checked> BFS<br>
@@ -53,7 +53,7 @@
                     <div id="form-left" class="form-block">
                         
                         <div class="form-item1">
-                            <label class="form-label" for="num_node">Số đỉnh</label>
+                            <label class="form-label" for="num_node" required>Số đỉnh</label>
                             <input class="form-input" id="num_node" name="num_node" type="number" min="2" placeholder="0"/>
                         </div>
 
@@ -150,24 +150,26 @@
 
                     <div id="form-bottom" class="form-block">
                         
-                        <div class="form-label" id="label-bottom" >Danh sách cạnh: </div><br>
+                        <div class="form-label" id="label-bottom" >Danh sách cạnh:</div><br>
                         <div id="list_edge"></div>
+                        <input class="form-input" id="list_input_edge" name="list_input_edge" hidden="true" type="text"/>
                                 
                     </div>
                     
-                    <button class="form-button" id="button-search" type="submit" onclick="search()">Tìm kiếm đường đi</button>
+                    <button class="form-button" id="button-search" type="submit">Tìm kiếm đường đi</button>
 
                 </form>
             </div>
             <div class="main-block" id="answer" >
                 <form method="post" class="form">
             
-                    <h2 id="heading">Ðáp án: Ðường đi ngắn nhất theo thuật toán</h1>
-                    <div id="ans">${ans}</div>
+                    <h2 id="heading">Ðường đi ngắn nhất theo thuật toán</h1>
+                    <div id="ans">Kết quả: ${ans}</div>
                 </form>
             </div>
         </div>
     </div>
+                
 </body>
 <script src="js/algorithm.js"></script>
 </html>

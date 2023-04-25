@@ -40,6 +40,8 @@ function add_edge(e){
         else{
             list_size = list_edge.push(edge);
             document.getElementById("list_edge").innerHTML = list_edge.join(", ");
+            document.getElementById("list_input_edge").value = list_edge.join("");
+        
         }
     }
 }
