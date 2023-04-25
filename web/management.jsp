@@ -35,16 +35,16 @@
                     <div style="width:100%;margin-right:-1px;background:#c3c3c3;border:solid 1px #000;" >
                         <table id="header" cellpadding="3" cellspacing="0" border="0">
                             <tr>
-                                <th class="col1">ID</th>
+                                <th class="col0">ID</th>
                                 <th class="col3">Họ và tên</th>
                                 <th class="col2">Ngày sinh</th>
-                                <th class="col2">Giới tính</th>
+                                <th class="col1">Giới tính</th>
                                 <th class="col2">SĐT</th>
                                 <th class="col4">Địa chỉ</th>
-                                <th class="col2">Chi nhánh</th>
+                                <th class="col1">Chi nhánh</th>
                                 <th class="col3">Chức vụ</th>
                                 <th class="col2">Mức Lương</th>
-                                <th class="col3">Chú thích</th>
+                                <th class="col2">Chú thích</th>
                             </tr>
                         </table>
                     </div>
@@ -56,16 +56,16 @@
                                 int k = i.getId()%2;
                         %>
                                 <tr class="row<%=k%>" onclick="insert(<%=i.getId()%>)">
-                                    <td class="col1"><%=i.getId()%></td>
+                                    <td class="col0"><%=i.getId()%></td>
                                     <td class="col3"><%=i.getHoten()%></td>
                                     <td class="col2"><%=i.getNgaysinh()%></td>
-                                    <td class="col2"><%=i.getGioitinh()%></td>
+                                    <td class="col1"><%=i.getGioitinh()%></td>
                                     <td class="col2"><%=i.getSdt()%></td>
                                     <td class="col4"><%=i.getDiachi()%></td>
-                                    <td class="col2"><%=i.getChinhanh()%></td>
+                                    <td class="col1"><%=i.getChinhanh()%></td>
                                     <td class="col3"><%=i.getChucvu()%></td>
                                     <td class="right" class="col2"><%=i.getMucluong()%></td>
-                                    <td class="col3"><%=i.getChuthich()%></td>
+                                    <td class="col2"><%=i.getChuthich()%></td>
                                 </tr>
                          <%
                             }

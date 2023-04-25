@@ -116,7 +116,7 @@ a:hover{
     text-align: right;
 }
 table#header th {
-    padding: 0.8% 0.2%;
+    padding: 0.4% 0.1%;
     word-wrap: break-word;
     border-right: solid 1px #000;
     text-align: center;
@@ -152,21 +152,25 @@ table#tbl-content tr#bottom td {
     text-align: left;
     table-layout: fixed;
 }
+.col0{
+    width: 5%;
+    text-align: center;
+}
 .col1{
-    width: 4%;
+    width: 7%;
     text-align: center;
 }
 .col2{
-    width: 8%;
+    width: 10%;
     min-width: 100px;
     text-align: center;
 }
 .col3{
-    width: 14%;
+    width: 13%;
     text-align: left
 }
 .col4{
-    width: 14%;
+    width: 15%;
     text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
