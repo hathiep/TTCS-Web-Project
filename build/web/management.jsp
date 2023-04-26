@@ -79,7 +79,7 @@
                             List<NV> list = (List<NV>)request.getAttribute("listNV");
                             int t = 0, k = 0;
                             for(NV i:list){
-                                k = i.getId()%2;
+                                t++; k = t%2;
                         %>
                                 <tr class="row<%=k%>" onclick="insert(<%=i.getId()%>)">
                                     <td class="col0"><%=i.getId()%></td>
