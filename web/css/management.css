@@ -76,6 +76,16 @@ a:hover{
     min-height: 40px;
     background: purple;
 }
+.sort-block {
+    width: 40%;
+    height: 20px;
+    font-size: 1.1rem;
+    display: flex;
+    float:left;
+}
+.list-select{
+    font-size: 1.2rem;
+}
 .main-block{
     width: 98%;
     height: fit-content;
@@ -109,7 +119,9 @@ a:hover{
 }
 #sort{
     width: 100%;
-    height: 40px;
+    height: 50px;
+    padding: 1% 1%;
+    align-items: center;
     text-align: left;
 }
 .right{
@@ -298,16 +310,16 @@ table#tbl-content tr#bottom td {
     border-color: #1dbfaf;
 }
 .form-inputb {
-    width: 70px;
-    min-width: 70px;
-    height: 150px;
-    margin-left: 65%;
-    padding: 8px 10px;
-    font-size: 1.6rem;
+    width: 40%;
+    min-width: 100px;
+    height: 35px;
+    padding: 6px 2px;
+    margin-left: 5%;
+    font-size: 1rem;
     border: 1px solid #b3b3b3;
     border-radius: 3px;
     outline: none;
-    text-align: left;
+    align-self: center;
 }
 .form-inputb:hover{
     border-color: #1dbfaf;
@@ -343,7 +355,15 @@ table#tbl-content tr#bottom td {
     background-color: #1dbfaf;
     cursor: pointer;
 }
-#button-edit {
+#button-sort {
+    width: 10%;
+    align-self: center;
+    margin-top: 0;
+    font-size: 1rem;
+    text-align: center;
+    background-color: #9c9c9c;
+}
+#button-update{
     background-color: rgb(227, 227, 0);
 }
 #button-delete {
@@ -352,10 +372,13 @@ table#tbl-content tr#bottom td {
 #button-reset {
     background-color: #9c9c9c;
 }
+#button-sort:hover {
+    background-color: #a9a9a9;
+}
 #button-add:hover {
     background-color: #1ac7b6;
 }
-#button-edit:hover {
+#button-update:hover {
     background-color:rgb(233, 233, 30);
 }
 #button-delete:hover {
@@ -366,17 +389,6 @@ table#tbl-content tr#bottom td {
 }
 #label-bottom {
     align-self: inherit;
-}
-#list_edge {
-    width: 95%;
-    margin-top: 30px;
-    margin-left: 12px;
-    padding-bottom: 0.6rem;
-    line-height: 1.8rem;
-    font-size: 1.4rem;
-    font-weight: 400;
-    text-align: left;
-    float: left;
 }
 .form-link{
     margin-top: 15px;

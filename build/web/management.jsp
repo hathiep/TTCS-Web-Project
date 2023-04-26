@@ -31,7 +31,32 @@
                 </div>
                     
                 <div id="block-table" class="main-block">
-                    <div id="sort"><h3>Sắp xếp</h3></div>
+                    <form method="post" id="sort">
+                        
+                        <div id="info-block" class="sort-block">
+                            <label for="info-sort">Sắp xếp theo thông tin: </label>
+                            <select class="form-inputb" class="list-select" name="info-sort" id="info-sort">
+                                <option value="">--Hãy chọn tên cột--</option>
+                                <option value="id">ID</option>
+                                <option value="hoten">Họ và tên</option>
+                                <option value="ngaysinh">Ngày sinh</option>
+                                <option value="chucvu">Chức vụ</option>
+                                <option value="mucluong">Mức Lương</option>
+                            </select>
+                        </div>
+                        
+                        <div id="rannk-block" class="sort-block">
+                            <label for="rank-sort">Sắp xếp theo thứ tự: </label>
+                            <select class="form-inputb" class="list-select" name="rank-sort" id="rank-sort">
+                                <option value="">--Hãy chọn thứ tự--</option>
+                                <option value="1">Thứ tự tăng dần</option>
+                                <option value="2">Thứ tự giảm dần</option>
+                            </select>
+                        </div>
+                        
+                        <button id="button-sort" class="form-button" type="submit" formaction="management">Sắp xếp</button>
+                    </form>
+                    
                     <div style="width:100%;margin-right:-1px;background:#c3c3c3;border:solid 1px #000;" >
                         <table id="header" cellpadding="3" cellspacing="0" border="0">
                             <tr>
@@ -52,8 +77,9 @@
                         <table id="tbl-content" cellpadding="3" cellspacing="0" border="0">
                         <%
                             List<NV> list = (List<NV>)request.getAttribute("listNV");
+                            int t = 0, k = 0;
                             for(NV i:list){
-                                int k = i.getId()%2;
+                                k = i.getId()%2;
                         %>
                                 <tr class="row<%=k%>" onclick="insert(<%=i.getId()%>)">
                                     <td class="col0"><%=i.getId()%></td>
@@ -74,9 +100,6 @@
                     </div>
                 </div>
                 
-<!--                <div class="main-block" id="crud">
-                    
-                </div>-->
                 <div id="block-table" class="main-block">
                     <form method="post" action="" class="form" id="forminfo">
 

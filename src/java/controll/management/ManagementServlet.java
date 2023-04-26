@@ -7,12 +7,12 @@ package controll.management;
 
 import dao.NVDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.Collections;
 import java.util.List;
 import model.NV;
 
@@ -33,14 +33,62 @@ public class ManagementServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String info_sort = request.getParameter("info-sort");
+        String rank_sort = request.getParameter("rank-sort");
+        
         NVDAO dao = new NVDAO();
-        List<NV> listNV = (List<NV>) dao.getAllNV();
-              
-        if(listNV.size()!=0){
-            request.setAttribute("listNV", listNV);
-            request.getRequestDispatcher("management.jsp").forward(request, response);
+        List<NV> list = dao.getAllNV(); 
+        
+        String s = info_sort + "_sort" + rank_sort; 
+        if(info_sort != null || rank_sort != null) list = sort_list(s, list);
+        
+        request.setAttribute("listNV", list);
+        request.getRequestDispatcher("management.jsp").forward(request, response);
+    }
+    
+    private static List<NV> sort_list(String s, List<NV> list){
+        if(s.equals("id_sort1")){
+            Collections.sort(list, NV.id_sort1);
+            return list;
         }
-    } 
+        if(s.equals("id_sort2")){
+            Collections.sort(list, NV.id_sort2);
+            return list;
+        }
+        if(s.equals("hoten_sort1")){
+            Collections.sort(list, NV.hoten_sort1);
+            return list;
+        }
+        if(s.equals("hoten_sort2")){
+            Collections.sort(list, NV.hoten_sort2);
+            return list;
+        }
+        if(s.equals("ngaysinh_sort1")){
+            Collections.sort(list, NV.ngaysinh_sort1);
+            return list;
+        }
+        if(s.equals("ngaysinh_sort2")){
+            Collections.sort(list, NV.ngaysinh_sort2);
+            return list;
+        }
+        if(s.equals("chucvu_sort1")){
+            Collections.sort(list, NV.chucvu_sort1);
+            return list;
+        }
+        if(s.equals("chucvu_sort2")){
+            Collections.sort(list, NV.chucvu_sort2);
+            return list;
+        }
+        if(s.equals("mucluong_sort1")){
+            Collections.sort(list, NV.mucluong_sort1);
+            return list;
+        }
+        if(s.equals("mucluong_sort2")){
+            Collections.sort(list, NV.mucluong_sort2);
+            return list;
+        }
+        return list;
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
