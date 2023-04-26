@@ -175,7 +175,7 @@
                                 <button class="form-button" id="button-add" type="submit" formaction="add">Thêm</button>
                             </div>
                             <div class="form-item2">
-                                <button class="form-button" id="button-edit" type="submit" formaction="update">Sửa</button>
+                                <button class="form-button" id="button-update" type="submit" formaction="update">Sửa</button>
                             </div>
                             <div class="form-item2">
                                 <button class="form-button" id="button-delete" type="submit" action="deleteNV()">Xoá</button>
