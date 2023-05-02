@@ -6,16 +6,13 @@
 package controll;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import model.BFSAlgorithm;
+import model.BFSCoHuong;
+import model.DFSCoHuong;
 
 /**
  *
@@ -38,18 +35,24 @@ public class AlgorithmControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         int n = Integer.parseInt(request.getParameter("num_node"));
         int m = Integer.parseInt(request.getParameter("num_edge"));
+        String[] type_algorithm = request.getParameterValues("type_algorithm");
+        String[] direction = request.getParameterValues("direction");
         String start_node = request.getParameter("start_node");
         String finish_node = request.getParameter("finish_node");
         String list_edge = request.getParameter("list_input_edge");
-        BFSAlgorithm bfs = new BFSAlgorithm(n, m, start_node, finish_node, list_edge);
-        String ans = bfs.Solve();
-        if(ans != null){
-            request.setAttribute("ans", ans);
+        if(type_algorithm[0].equals("1") && direction[0].equals("1")){
+            BFSCoHuong bfs = new BFSCoHuong(n, m, start_node, finish_node, list_edge);
+            request.setAttribute("ans", bfs.Solve());
+            request.getRequestDispatcher("algorithm.jsp").forward(request, response);
+        }
+        if(type_algorithm[0].equals("0") && direction[0].equals("1")){
+            DFSCoHuong dfs = new DFSCoHuong(n, m, start_node, finish_node, list_edge);
+            request.setAttribute("ans", dfs.Solve());
             request.getRequestDispatcher("algorithm.jsp").forward(request, response);
         }
         else{
             request.setAttribute("ans", "null");
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            request.getRequestDispatcher("algorithm.jsp").forward(request, response);
         }
         
     }

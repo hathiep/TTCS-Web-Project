@@ -12,52 +12,46 @@ import java.util.LinkedList;
  *
  * @author havanthiep
  */
-public class BFSAlgorithm {
-    public static ArrayList<LinkedList<Integer>> canh = new ArrayList<LinkedList<Integer>>();
-    public static boolean[] chuaxet = new boolean[10000];
-    public static ArrayList<Integer> trace = new ArrayList<Integer>();
-    public static String str = "";
-    public int n, m;
-    public String start_node, finish_node, list_edge;
+public class DFSCoHuong {
+    private static ArrayList<LinkedList<Integer>> canh = new ArrayList<LinkedList<Integer>>();
+    private static boolean[] chuaxet = new boolean[10000];
+    private static ArrayList<Integer> trace = new ArrayList<Integer>();
+    private static String str = "";
+    private int n, m;
+    private String start_node, finish_node, list_edge;
     
-    private static void BFS(int u){
-            LinkedList<Integer> q = new LinkedList<Integer>();
-            q.offer(u);
-            chuaxet[u] = true;
-            while (!q.isEmpty()){
-                u = q.peek();
-                q.poll();
-                for (int i : canh.get(u)){
-                    if (!chuaxet[i]){
-                        q.offer(i);
-                        trace.set(i, u);
-                        chuaxet[i] = true;
-                    }
-                }
+    private static void DFS(int u){
+        if(chuaxet[u]) return;
+        chuaxet[u] = true;
+        for(int i=0; i<canh.get(u).size(); i++){
+            if (!chuaxet[canh.get(u).get(i)]){
+                trace.set(canh.get(u).get(i), u);
+                DFS(canh.get(u).get(i));
             }
+        }
     }
     private static String tim(int s, int e){
-            if (trace.get(e) == 0){
-                return "Khong tim duoc duong di1";
-            }
-            ArrayList<Integer> res = new ArrayList<Integer>();
-            while (e != s){
-                if (e == 0){
-                    return "Khong tim duoc duong di2";
-                }
-                res.add(e);
-                e = trace.get(e);
+        if (trace.get(e) == 0){
+            return "Khong tim duoc duong di1";
+        }
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        while (e != s){
+            if (e == 0){
+                return "Khong tim duoc duong di2";
             }
             res.add(e);
-            Collections.reverse(res);
-            String st = "" + str.charAt(res.get(0));
-            for (int i = 1; i < res.size(); i++){
-                st+="->"+str.charAt(res.get(i));
-            }
-            return st;
+            e = trace.get(e);
+        }
+        res.add(e);
+        Collections.reverse(res);
+        String st = "" + str.charAt(res.get(0));
+        for (int i = 1; i < res.size(); i++){
+            st+="->"+str.charAt(res.get(i));
+        }
+        return st;
     }
 
-    public BFSAlgorithm(int n, int m, String start_node, String finish_node, String list_edge) {
+    public DFSCoHuong(int n, int m, String start_node, String finish_node, String list_edge) {
         this.n = n;
         this.m = m;
         this.start_node = start_node;
@@ -111,13 +105,11 @@ public class BFSAlgorithm {
             z.offer(y);
             canh.set(x, z);
         }
-        System.out.println(n + "*" + m + "*" + str + "*" + S + "*" + E);
         for(int i=0; i<str.length(); i++){
             if(str.charAt(i)==S) s=i;
             if(str.charAt(i)==E) e=i;
         }
-        System.out.println(s + "*" + e);
-        BFS(s);
+        DFS(s);
         return tim(s, e);
     }
 
