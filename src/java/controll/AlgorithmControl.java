@@ -42,11 +42,13 @@ public class AlgorithmControl extends HttpServlet {
         String list_edge = request.getParameter("list_input_edge");
         if(type_algorithm[0].equals("1") && direction[0].equals("1")){
             BFSCoHuong bfs = new BFSCoHuong(n, m, start_node, finish_node, list_edge);
+            request.setAttribute("type", "BFS có hướng");
             request.setAttribute("ans", bfs.Solve());
             request.getRequestDispatcher("algorithm.jsp").forward(request, response);
         }
         if(type_algorithm[0].equals("0") && direction[0].equals("1")){
             DFSCoHuong dfs = new DFSCoHuong(n, m, start_node, finish_node, list_edge);
+            request.setAttribute("type", "DFS có hướng");
             request.setAttribute("ans", dfs.Solve());
             request.getRequestDispatcher("algorithm.jsp").forward(request, response);
         }

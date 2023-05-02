@@ -163,7 +163,7 @@
             <div class="main-block" id="answer" >
                 <form method="post" class="form">
             
-                    <h2 id="heading">Ðường đi ngắn nhất theo thuật toán</h1>
+                    <h2 id="heading">Ðường đi ngắn nhất theo thuật toán ${type}</h1>
                     <div id="ans">Kết quả: ${ans}</div>
                 </form>
             </div>
