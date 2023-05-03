@@ -67,7 +67,7 @@ public class DFSCoHuong {
         E = finish_node.charAt(0);
         canh.clear();
         trace.clear();
-        for(int i=1; i<=n; i++){
+        for(int i=0; i<=n; i++){
             LinkedList<Integer> q = new LinkedList<>();
             canh.add(q);
             q.offer(0);
