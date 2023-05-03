@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.BFSCoHuong;
+import model.BFSVoHuong;
 import model.DFSCoHuong;
 
 /**
@@ -43,6 +44,12 @@ public class AlgorithmControl extends HttpServlet {
         if(type_algorithm[0].equals("1") && direction[0].equals("1")){
             BFSCoHuong bfs = new BFSCoHuong(n, m, start_node, finish_node, list_edge);
             request.setAttribute("type", "BFS có hướng");
+            request.setAttribute("ans", bfs.Solve());
+            request.getRequestDispatcher("algorithm.jsp").forward(request, response);
+        }
+        if(type_algorithm[0].equals("1") && direction[0].equals("0")){
+            BFSVoHuong bfs = new BFSVoHuong(n, m, start_node, finish_node, list_edge);
+            request.setAttribute("type", "BFS vô hướng");
             request.setAttribute("ans", bfs.Solve());
             request.getRequestDispatcher("algorithm.jsp").forward(request, response);
         }
