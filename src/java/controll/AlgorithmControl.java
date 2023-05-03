@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.BFSCoHuong;
 import model.BFSVoHuong;
 import model.DFSCoHuong;
+import model.DFSVoHuong;
 
 /**
  *
@@ -56,6 +57,12 @@ public class AlgorithmControl extends HttpServlet {
         if(type_algorithm[0].equals("0") && direction[0].equals("1")){
             DFSCoHuong dfs = new DFSCoHuong(n, m, start_node, finish_node, list_edge);
             request.setAttribute("type", "DFS có hướng");
+            request.setAttribute("ans", dfs.Solve());
+            request.getRequestDispatcher("algorithm.jsp").forward(request, response);
+        }
+        if(type_algorithm[0].equals("0") && direction[0].equals("0")){
+            DFSVoHuong dfs = new DFSVoHuong(n, m, start_node, finish_node, list_edge);
+            request.setAttribute("type", "DFS vô hướng");
             request.setAttribute("ans", dfs.Solve());
             request.getRequestDispatcher("algorithm.jsp").forward(request, response);
         }
