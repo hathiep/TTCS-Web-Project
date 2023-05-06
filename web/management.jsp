@@ -13,22 +13,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý nhân viên</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/management.css">
 </head>
     <body>
         <div class="home-heading">
-            <h1>Quản lý nhân viên</h1>
+            <h1>Chào mừng bạn đến với Tada!</h1>
         </div>
         <div class="home-body">
             <div class="home-menu">
-                <li><a href="index.jsp">Trang chủ</a></li>
-                <li><a href="algorithm.jsp">Thuật toán</a></li>
-                <li><a href="languageprocess.jsp">Xử lý ngôn ngữ tự nhiên</a></li>
+                <li id="home" class="menu-item"><a href="index.jsp">Trang chủ</a></li>
+                <li id="management" class="menu-item">Quản lý nhân viên
+                    <ul class="sub-menu">
+                        <li><a href="management">Thông tin nhân viên</a></li>
+                        <li><a href="salary">Quản lý bảng lương</a></li>
+                    </ul>
+                </li>
+                <li id="algorithm" class="menu-item"><a href="algorithm.jsp">Thuật toán</a></li>
+                <li id="languageprocess" class="menu-item"><a href="languageprocess">Xử lý ngôn ngữ tự nhiên</a></li>
             </div>
             <div class="home-main">
-                <div class="main-top">
-                    
-                </div>
                     
                 <div id="block-table" class="main-block">
                     <form method="post" id="sort">

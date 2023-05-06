@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin tài khoản</title>
+    <title>Trang chủ</title>
     <link rel="stylesheet" href="css/home.css">
 </head>
     <body>
@@ -19,9 +19,15 @@
         </div>
         <div class="home-body">
             <div class="home-menu">
-                <li><a href="/thuctapcoso/management">Quản lý</a></li>
-                <li><a href="algorithm.jsp">Thuật toán</a></li>
-                <li><a href="languageprocess.jsp">Xử lý ngôn ngữ tự nhiên</a></li>
+                <li id="home" class="menu-item"><a href="index.jsp">Trang chủ</a></li>
+                <li id="management" class="menu-item">Quản lý nhân viên
+                    <ul class="sub-menu">
+                        <li><a href="management">Thông tin nhân viên</a></li>
+                        <li><a href="salary">Quản lý bảng lương</a></li>
+                    </ul>
+                </li>
+                <li id="algorithm" class="menu-item"><a href="algorithm.jsp">Thuật toán</a></li>
+                <li id="languageprocess" class="menu-item"><a href="languageprocess">Xử lý ngôn ngữ tự nhiên</a></li>
             </div>
             <div class="home-main">
                 This is home

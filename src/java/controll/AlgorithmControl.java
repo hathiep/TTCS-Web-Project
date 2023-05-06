@@ -11,10 +11,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.BFSCoHuong;
-import model.BFSVoHuong;
-import model.DFSCoHuong;
-import model.DFSVoHuong;
+import model.algorithm.BFSCoHuong;
+import model.algorithm.BFSVoHuong;
+import model.algorithm.DFSCoHuong;
+import model.algorithm.DFSVoHuong;
 
 /**
  *
@@ -46,28 +46,38 @@ public class AlgorithmControl extends HttpServlet {
             BFSCoHuong bfs = new BFSCoHuong(n, m, start_node, finish_node, list_edge);
             request.setAttribute("type", "BFS có hướng");
             request.setAttribute("ans", bfs.Solve());
+            request.setAttribute("snode", start_node);
+            request.setAttribute("fnode", finish_node);
             request.getRequestDispatcher("algorithm.jsp").forward(request, response);
         }
         if(type_algorithm[0].equals("1") && direction[0].equals("0")){
             BFSVoHuong bfs = new BFSVoHuong(n, m, start_node, finish_node, list_edge);
             request.setAttribute("type", "BFS vô hướng");
             request.setAttribute("ans", bfs.Solve());
+            request.setAttribute("snode", start_node);
+            request.setAttribute("fnode", finish_node);
             request.getRequestDispatcher("algorithm.jsp").forward(request, response);
         }
         if(type_algorithm[0].equals("0") && direction[0].equals("1")){
             DFSCoHuong dfs = new DFSCoHuong(n, m, start_node, finish_node, list_edge);
             request.setAttribute("type", "DFS có hướng");
             request.setAttribute("ans", dfs.Solve());
+            request.setAttribute("snode", start_node);
+            request.setAttribute("fnode", finish_node);
             request.getRequestDispatcher("algorithm.jsp").forward(request, response);
         }
         if(type_algorithm[0].equals("0") && direction[0].equals("0")){
             DFSVoHuong dfs = new DFSVoHuong(n, m, start_node, finish_node, list_edge);
             request.setAttribute("type", "DFS vô hướng");
             request.setAttribute("ans", dfs.Solve());
+            request.setAttribute("snode", start_node);
+            request.setAttribute("fnode", finish_node);
             request.getRequestDispatcher("algorithm.jsp").forward(request, response);
         }
         else{
-            request.setAttribute("ans", "null");
+            request.setAttribute("ans", "Không tìm được đường đi");
+            request.setAttribute("snode", start_node);
+            request.setAttribute("fnode", finish_node);
             request.getRequestDispatcher("algorithm.jsp").forward(request, response);
         }
         

@@ -5,7 +5,7 @@
 
 package controll.management;
 
-import dao.NVDAO;
+import context.NVDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.Collections;
 import java.util.List;
-import model.NV;
+import model.management.NV;
 
 /**
  *
