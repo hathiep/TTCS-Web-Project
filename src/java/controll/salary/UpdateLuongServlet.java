@@ -21,8 +21,8 @@ import model.management.NV;
  *
  * @author havanthiep
  */
-@WebServlet(name="UpdateServlet", urlPatterns={"/updatesalary"})
-public class UpdateServlet extends HttpServlet {
+@WebServlet(name="UpdateLuongServlet", urlPatterns={"/updatesalary"})
+public class UpdateLuongServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
