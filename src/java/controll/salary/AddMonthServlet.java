@@ -5,20 +5,23 @@
 
 package controll.salary;
 
+import context.NVDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import model.management.NV;
 
 /**
  *
  * @author havanthiep
  */
-@WebServlet(name="Salary", urlPatterns={"/salary"})
-public class Salary extends HttpServlet {
+@WebServlet(name="AddMonthServlet", urlPatterns={"/addmonth"})
+public class AddMonthServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -30,18 +33,19 @@ public class Salary extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Salary</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Salary at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String month = request.getParameter("list-month");
+        String year = request.getParameter("list-year");
+        String thang = month + "/" + year;
+        NVDAO dao = new NVDAO();
+        List<NV> listnv = dao.getAllNV();
+        
+        for(NV i : listnv){
+            dao.setLuong(i.getId(), thang);
         }
+        List<NV> list = dao.getMonth(thang, 0);
+        request.setAttribute("listNV", dao.getAllNV());
+        request.setAttribute("listLuong", list);
+        request.getRequestDispatcher("salary.jsp").forward(request, response);        
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

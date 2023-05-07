@@ -14,7 +14,7 @@ function insert(id){
             else document.getElementById('radio2').checked = 'true';
             document.getElementById('sdt').value = table[i].cells[4].innerText;
             document.getElementById('diachi').value = table[i].cells[5].innerText;
-            document.getElementById('chinhanh').value = table[i].cells[6].innerText;
+            document.getElementById('ngaynhanviec').value = table[i].cells[6].innerText;
             document.getElementById('chucvu').value = table[i].cells[7].innerText;
             document.getElementById('mucluong').value = table[i].cells[8].innerText;
             document.getElementById('chuthich').value = table[i].cells[9].innerText;

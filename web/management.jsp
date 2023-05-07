@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="model.NV"%>
+<%@page import="model.management.NV"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -61,24 +61,23 @@
                         <button id="button-sort" class="form-button" type="submit" formaction="management">Sắp xếp</button>
                     </form>
                     
-                    <div style="width:100%;margin-right:-1px;background:#c3c3c3;border:solid 1px #000;" >
-                        <table id="header" cellpadding="3" cellspacing="0" border="0">
-                            <tr>
-                                <th class="col0">ID</th>
-                                <th class="col3">Họ và tên</th>
-                                <th class="col2">Ngày sinh</th>
-                                <th class="col1">Giới tính</th>
-                                <th class="col2">SĐT</th>
-                                <th class="col4">Địa chỉ</th>
-                                <th class="col1">Chi nhánh</th>
-                                <th class="col3">Chức vụ</th>
-                                <th class="col2">Mức Lương</th>
-                                <th class="col2">Chú thích</th>
-                            </tr>
-                        </table>
-                    </div>
                     <div id="box">
                         <table id="tbl-content" cellpadding="3" cellspacing="0" border="0">
+                            <thead>
+                                <tr>
+                                    <th class="col0">ID</th>
+                                    <th id="center1" class="col4">Họ và tên</th>
+                                    <th class="col2">Ngày sinh</th>
+                                    <th class="col1">Giới tính</th>
+                                    <th class="col2">SĐT</th>
+                                    <th id="center2" class="col5">Địa chỉ</th>
+                                    <th class="col3">Ngày nhận việc</th>
+                                    <th id="center3" class="col4">Chức vụ</th>
+                                    <th class="col2">Mức Lương</th>
+                                    <th id="center4" class="col4">Chú thích</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                         <%
                             List<NV> list = (List<NV>)request.getAttribute("listNV");
                             int t = 0, k = 0;
@@ -87,19 +86,20 @@
                         %>
                                 <tr class="row<%=k%>" onclick="insert(<%=i.getId()%>)">
                                     <td class="col0"><%=i.getId()%></td>
-                                    <td class="col3"><%=i.getHoten()%></td>
+                                    <td class="col4"><%=i.getHoten()%></td>
                                     <td class="col2"><%=i.getNgaysinh()%></td>
                                     <td class="col1"><%=i.getGioitinh()%></td>
                                     <td class="col2"><%=i.getSdt()%></td>
-                                    <td class="col4"><%=i.getDiachi()%></td>
-                                    <td class="col1"><%=i.getChinhanh()%></td>
-                                    <td class="col3"><%=i.getChucvu()%></td>
-                                    <td class="right" class="col2"><%=i.getMucluong()%></td>
-                                    <td class="col2"><%=i.getChuthich()%></td>
+                                    <td class="col5"><%=i.getDiachi()%></td>
+                                    <td class="col3"><%=i.getNgaynhanviec()%></td>
+                                    <td class="col4"><%=i.getChucvu()%></td>
+                                    <td id="right" class="col2"><%=i.getMucluong()%></td>
+                                    <td class="col4"><%=i.getChuthich()%></td>
                                 </tr>
                          <%
                             }
                         %>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
 
                             <div class="form-item1">
                                 <label class="form-label" for="ngaysinh">Ngày sinh</label>
-                                <input class="form-input" type="date" name="ngaysinh" id="ngaysinh" value="" value="1980-01-01" required>
+                                <input class="form-input" type="date" name="ngaysinh" id="ngaysinh" value="1980-01-01" required>
                             </div>
 
                             <div class="form-item1">
@@ -153,8 +153,8 @@
                             </div>
                             
                             <div class="form-item1">
-                                <label class="form-label" for="chinhanh">Chi nhánh</label>
-                                <input class="form-input" id="chinhanh" name="chinhanh" type="text" value="" placeholder="Nhập chi nhánh" required/>
+                                <label class="form-label" for="ngaynhanviec">Ngày nhận việc</label>
+                                <input class="form-input" id="ngaynhanviec" name="ngaynhanviec" type="date" value="2020-01-01" required/>
                             </div>
 
                             <div class="form-item1">

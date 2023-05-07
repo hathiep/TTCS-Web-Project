@@ -40,7 +40,7 @@ public class ManagementServlet extends HttpServlet {
         List<NV> list = dao.getAllNV(); 
         
         String s = info_sort + "_sort" + rank_sort; 
-        if(info_sort != null || rank_sort != null) list = sort_list(s, list);
+        if(info_sort != null && rank_sort != null) list = sort_list(s, list);
         
         request.setAttribute("listNV", list);
         request.getRequestDispatcher("management.jsp").forward(request, response);

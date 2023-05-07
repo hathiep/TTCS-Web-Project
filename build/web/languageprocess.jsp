@@ -4,7 +4,7 @@
     Author     : havanthiep
 --%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.NLP"%>
+<%@page import="model.languageprocess.NLP"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

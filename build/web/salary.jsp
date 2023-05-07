@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="model.NV"%>
+<%@page import="model.management.NV"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý bảng lương</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/management.css">
+    <link rel="stylesheet" href="css/salary.css">
 </head>
     <body>
         <div class="home-heading">
@@ -37,69 +37,104 @@
                 <div id="block-table" class="main-block">
                     <form method="post" id="sort">
                         
-                        <div id="info-block" class="sort-block">
-                            <label for="info-sort">Sắp xếp theo thông tin: </label>
-                            <select class="form-inputb" class="list-select" name="info-sort" id="info-sort">
-                                <option value="">--Hãy chọn tên cột--</option>
-                                <option value="id">ID</option>
-                                <option value="hoten">Họ và tên</option>
-                                <option value="ngaysinh">Ngày sinh</option>
-                                <option value="chucvu">Chức vụ</option>
-                                <option value="mucluong">Mức Lương</option>
+                        <div id="month-block" class="time-block">
+                            <label for="list-month">Chọn tháng: </label>
+                            <select class="form-inputb" class="list-select" value="${month}" name="list-month" id="list-month">
+                                <option value="">--Hãy chọn tháng--</option>
+                                <option value="0">Tất cả tháng</option>
+                                <option value="01">Tháng 1</option>
+                                <option value="02">Tháng 2</option>
+                                <option value="03">Tháng 3</option>
+                                <option value="04">Tháng 4</option>
+                                <option value="05">Tháng 5</option>
+                                <option value="06">Tháng 6</option>
+                                <option value="07">Tháng 7</option>
+                                <option value="08">Tháng 8</option>
+                                <option value="09">Tháng 9</option>
+                                <option value="10">Tháng 10</option>
+                                <option value="11">Tháng 11</option>
+                                <option value="12">Tháng 12</option>
                             </select>
                         </div>
                         
-                        <div id="rannk-block" class="sort-block">
-                            <label for="rank-sort">Sắp xếp theo thứ tự: </label>
-                            <select class="form-inputb" class="list-select" name="rank-sort" id="rank-sort">
-                                <option value="">--Hãy chọn thứ tự--</option>
-                                <option value="1">Thứ tự tăng dần</option>
-                                <option value="2">Thứ tự giảm dần</option>
+                        <div id="year-block" class="time-block">
+                            <label for="list-year">Chọn năm: </label>
+                            <select class="form-inputb" class="list-select" value="${year}" name="list-year" id="list-year">
+                                <option value="">--Hãy chọn năm--</option>
+                                <option value="0">Tất cả năm</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
                             </select>
                         </div>
                         
-                        <button id="button-sort" class="form-button" type="submit" formaction="management">Sắp xếp</button>
+                        <div id="nv-block" class="time-block">
+                            <label for="list-nv">Chọn nhân viên: </label>
+                            <select class="form-inputb" class="list-select" value="${nv}" name="list-nv" id="list-nv">
+                                <option value="">--Hãy chọn nhân viên--</option>
+                                <option value="0">Tất cả nhân viên</option>
+                            <%
+                                List<NV> list = (List<NV>)request.getAttribute("listNV");
+                                for(NV i:list){
+                            %>    
+                                    <option value="<%=i.getId()%>"><%=i.getHoten()%></option>
+                            <%
+                                }
+                            %> 
+                            </select>
+                        </div>
+                        
+                        <button id="button-add" class="form-button" type="submit" formaction="addmonth">Thêm tháng</button>
+                        <button id="button-search" class="form-button" type="submit" formaction="search">Xem</button>
                     </form>
                     
-                    <div style="width:100%;margin-right:-1px;background:#c3c3c3;border:solid 1px #000;" >
-                        <table id="header" cellpadding="3" cellspacing="0" border="0">
-                            <tr>
-                                <th class="col0">ID</th>
-                                <th class="col3">Họ và tên</th>
-                                <th class="col2">Ngày sinh</th>
-                                <th class="col1">Giới tính</th>
-                                <th class="col2">SĐT</th>
-                                <th class="col4">Địa chỉ</th>
-                                <th class="col1">Chi nhánh</th>
-                                <th class="col3">Chức vụ</th>
-                                <th class="col2">Mức Lương</th>
-                                <th class="col2">Chú thích</th>
-                            </tr>
-                        </table>
-                    </div>
                     <div id="box">
                         <table id="tbl-content" cellpadding="3" cellspacing="0" border="0">
+                            <thead>
+                                <tr>
+                                    <th class="col0">ID</th>
+                                    <th class="col2">Tháng</th>
+                                    <th class="col0">IdNV</th>
+                                    <th id="center1" class="col3">Họ và tên</th>
+                                    <th id="center2" class="col3">Chức vụ</th>
+                                    <th class="col2">Mức Lương</th>
+                                    <th class="col2">Thưởng</th>
+                                    <th class="col2">Phạt</th>
+                                    <th class="col2">Tổng nhận</th>
+                                    <th id="center3" class="col4">Chú thích</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                         <%
-                            List<NV> list = (List<NV>)request.getAttribute("listNV");
+                            List<NV> listLuong = (List<NV>)request.getAttribute("listLuong");
                             int t = 0, k = 0;
-                            for(NV i:list){
+                            for(NV i:listLuong){
                                 t++; k = t%2;
                         %>
+                                
                                 <tr class="row<%=k%>" onclick="insert(<%=i.getId()%>)">
                                     <td class="col0"><%=i.getId()%></td>
+                                    <td class="col2"><%=i.getThang()%></td>
+                                    <td class="col0"><%=i.getIdnv()%></td>
                                     <td class="col3"><%=i.getHoten()%></td>
-                                    <td class="col2"><%=i.getNgaysinh()%></td>
-                                    <td class="col1"><%=i.getGioitinh()%></td>
-                                    <td class="col2"><%=i.getSdt()%></td>
-                                    <td class="col4"><%=i.getDiachi()%></td>
-                                    <td class="col1"><%=i.getChinhanh()%></td>
                                     <td class="col3"><%=i.getChucvu()%></td>
                                     <td class="right" class="col2"><%=i.getMucluong()%></td>
-                                    <td class="col2"><%=i.getChuthich()%></td>
+                                    <td class="right" class="col2"><%=i.getThuong()%></td>
+                                    <td class="right" class="col2"><%=i.getPhat()%></td>
+                                    <td class="right" class="col2"><%=i.getTongnhan()%></td>
+                                    <td class="col4"><%=i.getChuthich()%></td>
                                 </tr>
-                         <%
+                        <%
                             }
                         %>
+                            </tbody>   
                         </table>
                     </div>
                 </div>
@@ -107,64 +142,59 @@
                 <div id="block-table" class="main-block">
                     <form method="post" action="" class="form" id="forminfo">
 
-                        <h2 id="heading">Chỉnh sửa thông tin nhân viên</h1>
+                        <h2 id="heading">Chỉnh sửa lương nhân viên</h1>
                         <h4 class="form-message" id="error">${error}</h4>
 
                         <div id="form-left" class="form-block" onclick="hideerror()">
                             
                             <div class="form-item1">
                                 <label class="form-label" for="id">ID</label>
-                                <input class="form-input" id="id" name="id" type="text" value="" placeholder="Nhập ID" required/>
+                                <div class="form-info" id="id" name="id" >${id}</div>
+                                <input id="idl" type="text" value="" hidden="true"/>
+                            </div>
+                            
+                            <div class="form-item1">
+                                <label class="form-label" for="thang">Tháng</label>
+                                <div class="form-info" id="thang" name="thang" >${thang}</div>
+                            </div>
+                            
+                            <div class="form-item1">
+                                <label class="form-label" for="idnv">IdNV</label>
+                                <div class="form-info" id="idnv" name="idnv" >${idnv}</div>
                             </div>
 
                             <div class="form-item1">
                                 <label class="form-label" for="hoten">Họ và tên</label>
-                                <input class="form-input" id="hoten" name="hoten" type="text" value="" placeholder="Nhập đầy đủ họ và tên" required/>
+                                <div class="form-info" id="hoten" name="hoten" >${hoten}</div>
                             </div>
 
                             <div class="form-item1">
-                                <label class="form-label" for="ngaysinh">Ngày sinh</label>
-                                <input class="form-input" type="date" name="ngaysinh" id="ngaysinh" value="" value="1980-01-01" required>
-                            </div>
-
-                            <div class="form-item1">
-                                <label class="form-label" for="gioitinh">Giới tính</label>
-                                <div class="form-radio">
-                                    <input id="radio1" type="radio" name="gioitinh" value="Nam">
-                                    <label for="radio1" class="radio-label">Nam</label>
-                                    <input id="radio2" type="radio" name="gioitinh" value="Nữ">
-                                    <label for="radio2" class="radio-label">Nữ</label>
-                                </div>
-                            </div>
-
-                            <div class="form-item1">
-                                <label class="form-label" for="sdt" required>SĐT</label>
-                                <input class="form-input" id="sdt" name="sdt" type="text" value="" placeholder="Nhập số điện thoại" required/>
+                                <label class="form-label" for="chucvu">Chức vụ</label>
+                                <div class="form-info" id="chucvu" name="chucvu" >${chucvu}</div>
                             </div>
 
                         </div>
 
                         <div id="form-center" class="form-block">
-
-
-                            <div class="form-item1">
-                                <label class="form-label" for="diachi">Địa chỉ</label>
-                                <input class="form-input" id="diachi" name="diachi" type="text" value="" placeholder="Nhập địa chỉ" required/>
-                            </div>
-                            
-                            <div class="form-item1">
-                                <label class="form-label" for="chinhanh">Chi nhánh</label>
-                                <input class="form-input" id="chinhanh" name="chinhanh" type="text" value="" placeholder="Nhập chi nhánh" required/>
-                            </div>
-
-                            <div class="form-item1">
-                                <label class="form-label" for="chucvu">Chức vụ</label>
-                                <input class="form-input" id="chucvu" name="chucvu" type="text" value="" placeholder="Nhập chức vụ" required/>
-                            </div>
                             
                             <div class="form-item1">
                                 <label class="form-label" for="mucluong">Mức lương</label>
-                                <input class="form-input" id="mucluong" name="mucluong" type="text" value="" placeholder="Nhập mức lương" required/>
+                                <div class="form-infob" id="mucluong" name="mucluong">${mucluong}</div>
+                            </div>
+                            
+                            <div class="form-item1">
+                                <label class="form-label" for="thuong">Thưởng</label>
+                                <input class="form-input" id="thuong" name="thuong" type="text" value="" placeholder="Nhập mức thưởng" required/>
+                            </div>
+
+                            <div class="form-item1">
+                                <label class="form-label" for="phat">Phạt</label>
+                                <input class="form-input" id="phat" name="phat" type="text" value="" placeholder="Nhập mức phạt" required/>
+                            </div>
+                            
+                            <div class="form-item1">
+                                <label class="form-label" for="tongnhan">Tổng nhận</label>
+                                <div class="form-infob" id="tongnhan" name="tongnhan">${tongnhan}</div>
                             </div>
                             
                             <div class="form-item1">
@@ -176,13 +206,7 @@
 
                         <div id="form-right" class="form-block">
                             <div class="form-item2">
-                                <button class="form-button" id="button-add" type="submit" formaction="add">Thêm</button>
-                            </div>
-                            <div class="form-item2">
-                                <button class="form-button" id="button-update" type="submit" formaction="update">Sửa</button>
-                            </div>
-                            <div class="form-item2">
-                                <button class="form-button" id="button-delete" type="submit" action="deleteNV()">Xoá</button>
+                                <button class="form-button" id="button-update" type="submit" formaction="updatesalary">Sửa</button>
                             </div>
                             <div class="form-item2">
                                 <button class="form-button" id="button-reset" type="reset" action="resetForm()">Reset</button>
@@ -194,5 +218,5 @@
             </div>
         </div>
     </body>
-    <script src="js/information.js"></script>
+    <script src="js/salary.js"></script>
 </html>

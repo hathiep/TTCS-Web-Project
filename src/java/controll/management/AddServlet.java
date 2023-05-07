@@ -39,13 +39,14 @@ public class AddServlet extends HttpServlet {
         String gioitinh = request.getParameter("gioitinh");
         String sdt = request.getParameter("sdt");
         String diachi = request.getParameter("diachi");
-        String chinhanh = request.getParameter("chinhanh");
+        String ngaynhanviec = request.getParameter("ngaynhanviec");
         String chucvu = request.getParameter("chucvu");
         int mucluong = Integer.parseInt(request.getParameter("mucluong"));
         String chuthich = request.getParameter("chuthich");
         
         NVDAO dao = new NVDAO();
         List<NV> list = dao.getAllNV();
+        
         for(NV i:list){
             if(i.getId()==id){
                 request.setAttribute("error", "Id đã tồn tại trong danh sách!");
@@ -57,7 +58,7 @@ public class AddServlet extends HttpServlet {
             request.getRequestDispatcher("management").forward(request, response);
         }
         else{
-            dao.addNV(id, hoten, ngaysinh, gioitinh, sdt, diachi, chinhanh, chucvu, mucluong, chuthich);
+            dao.addNV(id, hoten, ngaysinh, gioitinh, sdt, diachi, ngaynhanviec, chucvu, mucluong, chuthich);
             response.sendRedirect("management");
         }
     } 

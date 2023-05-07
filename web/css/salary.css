@@ -1,5 +1,5 @@
-.sort-block {
-    width: 40%;
+.time-block {
+    width: 25%;
     height: 20px;
     font-size: 1.1rem;
     display: flex;
@@ -92,20 +92,17 @@ thead th {
     width: 3%;
     text-align: center;
 }
-.col1{
-    width: 6%;
-    text-align: center;
-}
 .col2{
-    width: 8%;
+    width: 11%;
+    min-width: 100px;
     text-align: center;
 }
 .col3{
-    width: 11%;
-    text-align: center;
+    width: 13%;
+    text-align: left
 }
 .col4{
-    width: 13%;
+    width: 16%;
     text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -114,13 +111,6 @@ thead th {
 .col4:hover{
     white-space: pre-line;
     overflow: visible;
-}
-.col5{
-    width: 17%;
-    text-align: left;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
 }
 .row0{
     background: #e3e3e3;
@@ -218,6 +208,26 @@ thead th {
     align-self: center;
     justify-content: right;
 }
+.form-info {
+    width: 60%;
+    height: 30px;
+    margin-left: 40%;
+    padding: 8px 10px;
+    font-size: 1rem;
+    align-self: center;
+    text-align: left;
+    justify-content: right;
+}
+.form-infob {
+    width: 60%;
+    height: 30px;
+    margin-left: 40%;
+    padding: 8px 10px;
+    font-size: 1rem;
+    align-self: center;
+    text-align: right;
+    justify-content: right;
+}
 .form-radio {
     width: 60%;
     height: 30px;
@@ -240,7 +250,7 @@ thead th {
     border-color: #1dbfaf;
 }
 .form-inputb {
-    width: 40%;
+    width: 50%;
     min-width: 100px;
     height: 35px;
     padding: 6px 2px;
@@ -285,7 +295,7 @@ thead th {
     background-color: #1dbfaf;
     cursor: pointer;
 }
-#button-sort {
+#button-search {
     width: 10%;
     align-self: center;
     margin-top: 0;
@@ -293,16 +303,20 @@ thead th {
     text-align: center;
     background-color: #9c9c9c;
 }
-#button-update{
-    background-color: rgb(227, 227, 0);
+#button-add {
+    width: 10%;
+    align-self: center;
+    margin-top: 0;
+    font-size: 1rem;
+    text-align: center;
 }
-#button-delete {
-    background-color: #ff3a3a;
+#button-update {
+    background-color: rgb(227, 227, 0);
 }
 #button-reset {
     background-color: #9c9c9c;
 }
-#button-sort:hover {
+#button-search:hover {
     background-color: #a9a9a9;
 }
 #button-add:hover {
@@ -310,9 +324,6 @@ thead th {
 }
 #button-update:hover {
     background-color:rgb(233, 233, 30);
-}
-#button-delete:hover {
-    background-color: #ff4d4d;
 }
 #button-reset:hover {
     background-color: #a9a9a9;

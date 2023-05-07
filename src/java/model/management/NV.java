@@ -3,24 +3,37 @@ package model.management;
 import java.util.Comparator;
 
 public class NV{
-    private int id;
-    private String hoten, ngaysinh, gioitinh, sdt, diachi, chinhanh, chucvu;
-    private int mucluong;
-    private String chuthich="";
+    private int id, idnv;
+    private String hoten, ngaysinh, gioitinh, sdt, diachi, ngaynhanviec, chucvu, thang;
+    private int mucluong, thuong, phat, tongnhan;
+    private String chuthich;
 
     public NV() {
     }
 
-    public NV(int id, String hoten, String ngaysinh, String gioitinh, String sdt, String diachi, String chinhanh, String chucvu, int mucluong, String chuthich) {
+    public NV(int id, String hoten, String ngaysinh, String gioitinh, String sdt, String diachi, String ngaynhanviec, String chucvu, int mucluong, String chuthich) {
         this.id = id;
         this.hoten = hoten;
         this.ngaysinh = ngaysinh;
         this.gioitinh = gioitinh;
         this.sdt = sdt;
         this.diachi = diachi;
-        this.chinhanh = chinhanh;
+        this.ngaynhanviec = ngaynhanviec;
         this.chucvu = chucvu;
         this.mucluong = mucluong;
+        this.chuthich = chuthich;
+    }
+
+    public NV(int id, String thang, int idnv, String hoten, String chucvu, int mucluong, int thuong, int phat, String chuthich) {
+        this.id = id;
+        this.idnv = idnv;
+        this.hoten = hoten;
+        this.chucvu = chucvu;
+        this.thang = thang;
+        this.mucluong = mucluong;
+        this.thuong = thuong;
+        this.phat = phat;
+        this.tongnhan = mucluong + thuong - phat;
         this.chuthich = chuthich;
     }
 
@@ -30,6 +43,14 @@ public class NV{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdnv() {
+        return idnv;
+    }
+
+    public void setIdnv(int idnv) {
+        this.idnv = idnv;
     }
 
     public String getHoten() {
@@ -72,14 +93,14 @@ public class NV{
         this.diachi = diachi;
     }
 
-    public String getChinhanh() {
-        return chinhanh;
+    public String getNgaynhanviec() {
+        return ngaynhanviec;
     }
 
-    public void setChinhanh(String chinhanh) {
-        this.chinhanh = chinhanh;
+    public void setNgaynhanviec(String ngaynhanviec) {
+        this.ngaynhanviec = ngaynhanviec;
     }
-
+    
     public String getChucvu() {
         return chucvu;
     }
@@ -88,12 +109,44 @@ public class NV{
         this.chucvu = chucvu;
     }
 
+    public String getThang() {
+        return thang;
+    }
+
+    public void setThang(String thang) {
+        this.thang = thang;
+    }
+
     public int getMucluong() {
         return mucluong;
     }
 
     public void setMucluong(int mucluong) {
         this.mucluong = mucluong;
+    }
+
+    public int getThuong() {
+        return thuong;
+    }
+
+    public void setThuong(int thuong) {
+        this.thuong = thuong;
+    }
+
+    public int getPhat() {
+        return phat;
+    }
+
+    public void setPhat(int phat) {
+        this.phat = phat;
+    }
+
+    public int getTongnhan() {
+        return tongnhan;
+    }
+
+    public void setTongnhan(int tongnhan) {
+        this.tongnhan = tongnhan;
     }
 
     public String getChuthich() {
@@ -193,11 +246,5 @@ public class NV{
         }
         
     };
-
-//    @Override
-//    public int compareTo(NV o) {
-//        return this.hoten.compareTo(o.hoten);
-//    }
-//    
     
 }
