@@ -99,7 +99,7 @@
                         <table id="tbl-content" cellpadding="3" cellspacing="0" border="0">
                             <thead>
                                 <tr>
-                                    <th class="col0">ID</th>
+                                    <th id="idleft" class="col0">ID</th>
                                     <th class="col2">Tháng</th>
                                     <th class="col0">IdNV</th>
                                     <th id="center1" class="col3">Họ và tên</th>

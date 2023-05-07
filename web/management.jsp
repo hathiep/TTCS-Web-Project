@@ -65,7 +65,7 @@
                         <table id="tbl-content" cellpadding="3" cellspacing="0" border="0">
                             <thead>
                                 <tr>
-                                    <th class="col0">ID</th>
+                                    <th id="idleft" class="col0">ID</th>
                                     <th id="center1" class="col4">Họ và tên</th>
                                     <th class="col2">Ngày sinh</th>
                                     <th class="col1">Giới tính</th>
