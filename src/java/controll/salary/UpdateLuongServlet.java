@@ -34,37 +34,45 @@ public class UpdateLuongServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String month = request.getParameter("list-month");
-        String year = request.getParameter("list-year");
-        int idnv = Integer.parseInt(request.getParameter("list-nv"));
-        String thang = month + "/" + year;
+//        String month = request.getParameter("hmonth");
+//        String year = request.getParameter("hyear");
+//        int idnv = Integer.parseInt(request.getParameter("hnv"));
+//        String thang = month + "/" + year;
         
-        int id = Integer.parseInt(request.getParameter("id"));
-        int thuong = Integer.parseInt(request.getParameter("thuong"));
-        int phat = Integer.parseInt(request.getParameter("phat"));
+        int id = Integer.parseInt(request.getParameter("idud"));
+        String thuong = request.getParameter("thuong");
+        String phat = request.getParameter("phat");
         String chuthich = request.getParameter("chuthich");
-        int ok = 0;
         
 
         NVDAO dao = new NVDAO();
         List<NV> list = new ArrayList<NV>();
-        if(month.equals("0") && year.equals("0")){
-            list = dao.getAllLuong(id); 
-        }
-        else if(month.equals("0") && !year.equals("0")){
-            list = dao.getAllYear(year, id);
-        }
-        else if(!month.equals("0") && year.equals("0")){
-            list = dao.getAllMonth(month, id);
-        }
-        else {
-            list = dao.getMonth(thang, id); 
-        }
+//        if(month.equals("0") && year.equals("0")){
+//            list = dao.getAllLuong(idnv); 
+//        }
+//        else if(month.equals("0") && !year.equals("0")){
+//            list = dao.getAllYear(year, idnv);
+//        }
+//        else if(!month.equals("0") && year.equals("0")){
+//            list = dao.getAllMonth(month, idnv);
+//        }
+//        else {
+//            list = dao.getMonth(thang, idnv); 
+//        }
         
         List<NV> listAll = dao.getAllLuong(0);
+        int t, p;
         for(NV i:listAll){
             if(id == i.getId()){
-                dao.updateluong(id, thuong, phat, chuthich);
+                if(thuong == "") t = 0;
+                else t = Integer.parseInt(thuong);
+                if(phat == "" ) p = 0;
+                else p = Integer.parseInt(phat);
+                if(chuthich == "" ) chuthich = null;
+                dao.updateluong(id, t, p, chuthich);
+//                request.setAttribute("umonth", 1);
+//                request.setAttribute("uyear", 2020);
+//                request.setAttribute("unv", 0);
                 request.setAttribute("listNV", dao.getAllNV());
                 request.setAttribute("listLuong", list);
                 request.getRequestDispatcher("salary.jsp").forward(request, response);

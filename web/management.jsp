@@ -182,7 +182,7 @@
                                 <button class="form-button" id="button-update" type="submit" formaction="update">Sửa</button>
                             </div>
                             <div class="form-item2">
-                                <button class="form-button" id="button-delete" type="submit" action="deleteNV()">Xoá</button>
+                                <button class="form-button" id="button-delete" type="submit" formaction="delete" >Xoá</button>
                             </div>
                             <div class="form-item2">
                                 <button class="form-button" id="button-reset" type="reset" action="resetForm()">Reset</button>

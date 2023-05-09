@@ -36,10 +36,9 @@
                     
                 <div id="block-table" class="main-block">
                     <form method="post" id="sort">
-                        
                         <div id="month-block" class="time-block">
                             <label for="list-month">Chọn tháng: </label>
-                            <select class="form-inputb" class="list-select" value="${month}" name="list-month" id="list-month">
+                            <select class="form-inputb" class="list-select" value="" name="list-month" id="list-month">
                                 <option value="">--Hãy chọn tháng--</option>
                                 <option value="0">Tất cả tháng</option>
                                 <option value="01">Tháng 1</option>
@@ -59,7 +58,7 @@
                         
                         <div id="year-block" class="time-block">
                             <label for="list-year">Chọn năm: </label>
-                            <select class="form-inputb" class="list-select" value="${year}" name="list-year" id="list-year">
+                            <select class="form-inputb" class="list-select" value="" name="list-year" id="list-year">
                                 <option value="">--Hãy chọn năm--</option>
                                 <option value="0">Tất cả năm</option>
                                 <option value="2020">2020</option>
@@ -77,7 +76,7 @@
                         
                         <div id="nv-block" class="time-block">
                             <label for="list-nv">Chọn nhân viên: </label>
-                            <select class="form-inputb" class="list-select" value="${nv}" name="list-nv" id="list-nv">
+                            <select class="form-inputb" class="list-select" value="" name="list-nv" id="list-nv">
                                 <option value="">--Hãy chọn nhân viên--</option>
                                 <option value="0">Tất cả nhân viên</option>
                             <%
@@ -117,6 +116,8 @@
                             int t = 0, k = 0;
                             for(NV i:listLuong){
                                 t++; k = t%2;
+                                String ct = i.getChuthich();
+                                if(ct == null) ct = "";
                         %>
                                 
                                 <tr class="row<%=k%>" onclick="insert(<%=i.getId()%>)">
@@ -129,7 +130,7 @@
                                     <td class="right" class="col2"><%=i.getThuong()%></td>
                                     <td class="right" class="col2"><%=i.getPhat()%></td>
                                     <td class="right" class="col2"><%=i.getTongnhan()%></td>
-                                    <td class="col4"><%=i.getChuthich()%></td>
+                                    <td class="col4"><%=ct%></td>
                                 </tr>
                         <%
                             }
@@ -150,7 +151,7 @@
                             <div class="form-item1">
                                 <label class="form-label" for="id">ID</label>
                                 <div class="form-info" id="id" name="id" >${id}</div>
-                                <input id="idl" type="text" value="" hidden="true"/>
+                                <input id="idud" name="idud" type=hidden value="">
                             </div>
                             
                             <div class="form-item1">
@@ -184,12 +185,12 @@
                             
                             <div class="form-item1">
                                 <label class="form-label" for="thuong">Thưởng</label>
-                                <input class="form-input" id="thuong" name="thuong" type="text" value="" placeholder="Nhập mức thưởng" required/>
+                                <input class="form-input" id="thuong" name="thuong" type="text" placeholder="Nhập mức thưởng"/>
                             </div>
 
                             <div class="form-item1">
                                 <label class="form-label" for="phat">Phạt</label>
-                                <input class="form-input" id="phat" name="phat" type="text" value="" placeholder="Nhập mức phạt" required/>
+                                <input class="form-input" id="phat" name="phat" type="text" placeholder="Nhập mức phạt"/>
                             </div>
                             
                             <div class="form-item1">
@@ -206,6 +207,7 @@
 
                         <div id="form-right" class="form-block">
                             <div class="form-item2">
+<!--                                <a class="form-button" id="button-update" href="" >Sửa</a>-->
                                 <button class="form-button" id="button-update" type="submit" formaction="updatesalary">Sửa</button>
                             </div>
                             <div class="form-item2">

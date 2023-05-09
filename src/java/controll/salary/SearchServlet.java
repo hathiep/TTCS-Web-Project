@@ -52,9 +52,9 @@ public class SearchServlet extends HttpServlet {
         else {
             list = dao.getMonth(thang, id); 
         }
-        request.setAttribute("month", month);
-        request.setAttribute("year", year);
-        request.setAttribute("nv", id);
+//        request.setAttribute("umonth", month);
+//        request.setAttribute("uyear", year);
+//        request.setAttribute("unv", id);
         request.setAttribute("listNV", dao.getAllNV());
         request.setAttribute("listLuong", list);
         request.getRequestDispatcher("salary.jsp").forward(request, response); 
@@ -95,11 +95,5 @@ public class SearchServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private static class LArrayList<T> {
-
-        public LArrayList() {
-        }
-    }
 
 }
