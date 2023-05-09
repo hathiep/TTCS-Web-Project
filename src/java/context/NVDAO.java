@@ -78,8 +78,8 @@ public class NVDAO {
     }
         
     public void setLuong(int id, String thang){
-        String query1 = "insert into luong (idnv, thang, hoten, chucvu, mucluong, chuthich) "
-                + "select id, ?, hoten, chucvu, mucluong, '' "
+        String query1 = "insert into luong (idnv, thang, hoten, chucvu, mucluong, thuong, phat, tongnhan, chuthich) "
+                + "select id, ?, hoten, chucvu, mucluong, 0, 0, mucluong, '' "
                 + "from nhanvien where id=?";
         try {
             conn = new DBContext().getConnection();

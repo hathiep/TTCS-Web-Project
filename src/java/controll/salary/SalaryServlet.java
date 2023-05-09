@@ -36,7 +36,10 @@ public class SalaryServlet extends HttpServlet {
         NVDAO dao = new NVDAO();
         List<NV> listLuong = new ArrayList<>();
         List<NV> listNV = dao.getAllNV(); 
-                
+
+        request.setAttribute("umonth", "0");
+        request.setAttribute("uyear", "0");
+        request.setAttribute("unv", "0");
         request.setAttribute("listLuong", listLuong);
         request.setAttribute("listNV", listNV);
         request.getRequestDispatcher("salary.jsp").forward(request, response);

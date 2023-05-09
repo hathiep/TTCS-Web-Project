@@ -52,9 +52,9 @@ public class SearchServlet extends HttpServlet {
         else {
             list = dao.getMonth(thang, id); 
         }
-//        request.setAttribute("umonth", month);
-//        request.setAttribute("uyear", year);
-//        request.setAttribute("unv", id);
+        request.setAttribute("umonth", month);
+        request.setAttribute("uyear", year);
+        request.setAttribute("unv", request.getParameter("list-nv"));
         request.setAttribute("listNV", dao.getAllNV());
         request.setAttribute("listLuong", list);
         request.getRequestDispatcher("salary.jsp").forward(request, response); 

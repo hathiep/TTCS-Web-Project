@@ -142,6 +142,9 @@
                 
                 <div id="block-table" class="main-block">
                     <form method="post" action="" class="form" id="forminfo">
+                        <input class="form-input" id="ipmonth" name="ipmonth" type=hidden value="<%=request.getAttribute("umonth")%>">
+                        <input class="form-input" id="ipyear" name="ipyear" type=hidden value="<%=request.getAttribute("uyear")%>">
+                        <input class="form-input" id="ipnv" name="ipnv" type=hidden value="<%=request.getAttribute("unv")%>">
 
                         <h2 id="heading">Chỉnh sửa lương nhân viên</h1>
                         <h4 class="form-message" id="error">${error}</h4>
