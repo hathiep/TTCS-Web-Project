@@ -98,16 +98,16 @@
                         <table id="tbl-content" cellpadding="3" cellspacing="0" border="0">
                             <thead>
                                 <tr>
-                                    <th id="idleft" class="col0">ID</th>
-                                    <th class="col2">Tháng</th>
-                                    <th class="col0">IdNV</th>
-                                    <th id="center1" class="col3">Họ và tên</th>
-                                    <th id="center2" class="col3">Chức vụ</th>
-                                    <th class="col2">Mức Lương</th>
-                                    <th class="col2">Thưởng</th>
-                                    <th class="col2">Phạt</th>
-                                    <th class="col2">Tổng nhận</th>
-                                    <th id="center3" class="col4">Chú thích</th>
+                                    <th id="idleft" class="table-header col0">ID</th>
+                                    <th class="table-header col2">Tháng</th>
+                                    <th class="table-header col0">IdNV</th>
+                                    <th class="table-header col3">Họ và tên</th>
+                                    <th class="table-header col3">Chức vụ</th>
+                                    <th class="table-header col2">Mức Lương</th>
+                                    <th class="table-header col2">Thưởng</th>
+                                    <th class="table-header col2">Phạt</th>
+                                    <th class="table-header col2">Tổng nhận</th>
+                                    <th class="table-header col4">Chú thích</th>
                                 </tr>
                             </thead>
                             <tbody>

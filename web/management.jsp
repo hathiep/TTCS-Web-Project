@@ -35,66 +35,50 @@
             <div class="home-main">
                     
                 <div id="block-table" class="main-block">
-                    <form method="post" id="sort">
-                        
-                        <div id="info-block" class="sort-block">
-                            <label for="info-sort">Sắp xếp theo thông tin: </label>
-                            <select class="form-inputb" class="list-select" name="info-sort" id="info-sort">
-                                <option value="">--Hãy chọn tên cột--</option>
-                                <option value="id">ID</option>
-                                <option value="hoten">Họ và tên</option>
-                                <option value="ngaysinh">Ngày sinh</option>
-                                <option value="chucvu">Chức vụ</option>
-                                <option value="mucluong">Mức Lương</option>
-                            </select>
-                        </div>
-                        
-                        <div id="rannk-block" class="sort-block">
-                            <label for="rank-sort">Sắp xếp theo thứ tự: </label>
-                            <select class="form-inputb" class="list-select" name="rank-sort" id="rank-sort">
-                                <option value="">--Hãy chọn thứ tự--</option>
-                                <option value="1">Thứ tự tăng dần</option>
-                                <option value="2">Thứ tự giảm dần</option>
-                            </select>
-                        </div>
-                        
-                        <button id="button-sort" class="form-button" type="submit" formaction="management">Sắp xếp</button>
-                    </form>
                     
                     <div id="box">
                         <table id="tbl-content" cellpadding="3" cellspacing="0" border="0">
                             <thead>
                                 <tr>
-                                    <th id="idleft" class="col0">ID</th>
-                                    <th id="center1" class="col4">Họ và tên</th>
-                                    <th class="col2">Ngày sinh</th>
-                                    <th class="col1">Giới tính</th>
-                                    <th class="col2">SĐT</th>
-                                    <th id="center2" class="col5">Địa chỉ</th>
-                                    <th class="col3">Ngày nhận việc</th>
-                                    <th id="center3" class="col4">Chức vụ</th>
-                                    <th class="col2">Mức Lương</th>
-                                    <th id="center4" class="col4">Chú thích</th>
+                                    <th id="idleft" class="table-header col0" >ID</th>
+                                    <th class="table-header col2">Họ</th>
+                                    <th class="table-header col1">Tên</th>
+                                    <th class="table-header col2">Ngày sinh</th>
+                                    <th class="table-header col1">Giới tính</th>
+                                    <th class="table-header col2">SĐT</th>
+                                    <th class="table-header col5">Địa chỉ</th>
+                                    <th class="table-header col3">Ngày nhận việc</th>
+                                    <th class="table-header col4">Chức vụ</th>
+                                    <th class="table-header col2">Mức Lương</th>
+                                    <th class="table-header col4">Chú thích</th>
                                 </tr>
                             </thead>
                             <tbody>
                         <%
                             List<NV> list = (List<NV>)request.getAttribute("listNV");
-                            int t = 0, k = 0;
+                            int t = 0, k = 0, j;
                             for(NV i:list){
                                 t++; k = t%2;
+                                String[] w = i.getHoten().split("\\s+");
+                                String fname = "";
+                                for(j=0; j<w.length-1; j++){
+                                    fname+= w[j] + " ";
+                                }
+                                fname.trim();
+                                String lname = w[j];
                         %>
-                                <tr class="row<%=k%>" onclick="insert(<%=i.getId()%>)">
-                                    <td class="col0"><%=i.getId()%></td>
-                                    <td class="col4"><%=i.getHoten()%></td>
-                                    <td class="col2"><%=i.getNgaysinh()%></td>
-                                    <td class="col1"><%=i.getGioitinh()%></td>
-                                    <td class="col2"><%=i.getSdt()%></td>
-                                    <td class="col5"><%=i.getDiachi()%></td>
-                                    <td class="col3"><%=i.getNgaynhanviec()%></td>
-                                    <td class="col4"><%=i.getChucvu()%></td>
-                                    <td id="right" class="col2"><%=i.getMucluong()%></td>
-                                    <td class="col4"><%=i.getChuthich()%></td>
+                                <tr onclick="insert(<%=i.getId()%>)">
+                                    <td class="center col0"><%=i.getId()%></td>
+                                    <td class="left col2"><%=fname%></td>
+                                    <td class="left col1"><%=lname%></td>
+                                    <td class="center col2"><%=i.getNgaysinh()%></td>
+                                    <td class="left col2"><%=i.getGioitinh()%></td>
+                                    <td class="center col2"><%=i.getSdt()%></td>
+                                    <td class="left col5"><%=i.getDiachi()%></td>
+                                    <td class="center col3"><%=i.getNgaynhanviec()%></td>
+                                    <td class="left col4"><%=i.getChucvu()%></td>
+                                    <td class="right col2"><%=i.getMucluong()%></td>
+                                    <td class="left col4"><%=i.getChuthich()%></td>
                                 </tr>
                          <%
                             }

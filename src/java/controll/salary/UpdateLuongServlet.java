@@ -48,20 +48,20 @@ public class UpdateLuongServlet extends HttpServlet {
 
         NVDAO dao = new NVDAO();
         List<NV> list = new ArrayList<NV>();
-        if(month.equals("0") && year.equals("0")){
-            list = dao.getAllLuong(idnv); 
-        }
-        else if(month.equals("0") && !year.equals("0")){
-            list = dao.getAllYear(year, idnv);
-        }
-        else if(!month.equals("0") && year.equals("0")){
-            list = dao.getAllMonth(month, idnv);
-        }
-        else {
-            list = dao.getMonth(thang, idnv); 
-        }
         
         List<NV> listAll = dao.getAllLuong(0);
+        if(month.equals("0") && year.equals("0")){
+                    list = dao.getAllLuong(idnv); 
+                }
+                else if(month.equals("0") && !year.equals("0")){
+                    list = dao.getAllYear(year, idnv);
+                }
+                else if(!month.equals("0") && year.equals("0")){
+                    list = dao.getAllMonth(month, idnv);
+                }
+                else {
+                    list = dao.getMonth(thang, idnv); 
+                }
         int t, p;
         for(NV i:listAll){
             if(id == i.getId()){

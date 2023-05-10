@@ -46,9 +46,6 @@
     align-items: center;
     text-align: left;
 }
-.right{
-    text-align: right;
-}
 table#tbl-content td {
     padding: 0.6%;
     word-wrap: break-word;
@@ -84,12 +81,32 @@ thead th {
     border-right: solid 1px #000;
     border-bottom: solid 1px #000;
     text-align: center;
+    cursor: pointer;
+}
+
+th.asc::after {
+  content: '\25b2';
+  float: right;
+}
+
+th.desc::after {
+  content: '\25bc';
+  float: right;
+}
+tr:nth-child(even) {
+    background: #e3e3e3;
+}
+.left {
+    text-align: left;
+}
+.center {
+    text-align: center;
+}
+.right {
+    text-align: right;
 }
 #idleft {
     border-left: solid 1px #000;
-}
-#center1, #center2, #center3 {
-    text-align: center;
 }
 .col0{
     width: 3%;
