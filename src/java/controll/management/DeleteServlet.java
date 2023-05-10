@@ -7,12 +7,12 @@ package controll.management;
 
 import context.NVDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.Collections;
 import java.util.List;
 import model.management.NV;
 
@@ -20,8 +20,8 @@ import model.management.NV;
  *
  * @author havanthiep
  */
-@WebServlet(name="ManagementServlet", urlPatterns={"/management"})
-public class ManagementServlet extends HttpServlet {
+@WebServlet(name="DeleteServlet", urlPatterns={"/delete"})
+public class DeleteServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,13 +33,23 @@ public class ManagementServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        int id = Integer.parseInt(request.getParameter("id"));
         NVDAO dao = new NVDAO();
-        List<NV> list = dao.getAllNV(); 
+        List<NV> list = dao.getAllNV();
         
-        request.setAttribute("listNV", list);
-        request.getRequestDispatcher("management.jsp").forward(request, response);
-    }
+            int ok = 0;
+            for(NV i:list){
+                if(id == i.getId()){
+                    dao.deleteNV(id);
+                    ok = 1;
+                    response.sendRedirect("management");
+                }
+            }
+            if(ok==0){
+                request.setAttribute("error", "Id không đúng!");
+                request.getRequestDispatcher("management.jsp").forward(request, response);
+            }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 

@@ -18,10 +18,17 @@ function insert(id){
             document.getElementById('chucvu').value = table[i].cells[8].innerText;
             document.getElementById('mucluong').value = table[i].cells[9].innerText;
             document.getElementById('chuthich').value = table[i].cells[10].innerText;
+            document.getElementById("block-infor").style.display = "block";
         }
     }
 
 }
+document.addEventListener("click", function(event) {
+  if (!table.contains(event.target)) {
+    div.style.display = "none";
+  }
+});
+
 function makeSortable() {
     const table = document.querySelector('#tbl-content');
     const headers = table.querySelectorAll('.table-header');

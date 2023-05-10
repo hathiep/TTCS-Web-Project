@@ -76,6 +76,17 @@ public class NVDAO {
         } catch (Exception e) {
         }
     }
+    
+    public void deleteNV(int id){
+        String query = "delete nhanvien where id=?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
         
     public void setLuong(int id, String thang){
         String query1 = "insert into luong (idnv, thang, hoten, chucvu, mucluong, thuong, phat, tongnhan, chuthich) "

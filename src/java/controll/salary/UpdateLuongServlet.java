@@ -50,7 +50,16 @@ public class UpdateLuongServlet extends HttpServlet {
         List<NV> list = new ArrayList<NV>();
         
         List<NV> listAll = dao.getAllLuong(0);
-        if(month.equals("0") && year.equals("0")){
+        int t, p;
+        for(NV i:listAll){
+            if(id == i.getId()){
+                if(thuong == "") t = 0;
+                else t = Integer.parseInt(thuong);
+                if(phat == "" ) p = 0;
+                else p = Integer.parseInt(phat);
+                if(chuthich == "" ) chuthich = null;
+                dao.updateluong(id, t, p, chuthich);
+                if(month.equals("0") && year.equals("0")){
                     list = dao.getAllLuong(idnv); 
                 }
                 else if(month.equals("0") && !year.equals("0")){
@@ -62,15 +71,6 @@ public class UpdateLuongServlet extends HttpServlet {
                 else {
                     list = dao.getMonth(thang, idnv); 
                 }
-        int t, p;
-        for(NV i:listAll){
-            if(id == i.getId()){
-                if(thuong == "") t = 0;
-                else t = Integer.parseInt(thuong);
-                if(phat == "" ) p = 0;
-                else p = Integer.parseInt(phat);
-                if(chuthich == "" ) chuthich = null;
-                dao.updateluong(id, t, p, chuthich);
                 request.setAttribute("umonth", month);
                 request.setAttribute("uyear", year);
                 request.setAttribute("unv", idnv);

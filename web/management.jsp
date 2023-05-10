@@ -88,7 +88,7 @@
                     </div>
                 </div>
                 
-                <div id="block-table" class="main-block">
+                <div id="block-infor" class="main-block" style="display: none;">
                     <form method="post" action="" class="form" id="forminfo">
 
                         <h2 id="heading">Chỉnh sửa thông tin nhân viên</h1>
@@ -166,7 +166,7 @@
                                 <button class="form-button" id="button-update" type="submit" formaction="update">Sửa</button>
                             </div>
                             <div class="form-item2">
-                                <button class="form-button" id="button-delete" type="submit" formaction="delete" >Xoá</button>
+                                <button class="form-button" id="button-delete" type="submit" formaction="delete">Xoá</button>
                             </div>
                             <div class="form-item2">
                                 <button class="form-button" id="button-reset" type="reset" action="resetForm()">Reset</button>
