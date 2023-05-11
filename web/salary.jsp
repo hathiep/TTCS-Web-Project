@@ -99,38 +99,47 @@
                             <thead>
                                 <tr>
                                     <th id="idleft" class="table-header col0">ID</th>
-                                    <th class="table-header col2">Tháng</th>
+                                    <th class="table-header col1">Tháng</th>
                                     <th class="table-header col0">IdNV</th>
-                                    <th class="table-header col3">Họ và tên</th>
-                                    <th class="table-header col3">Chức vụ</th>
-                                    <th class="table-header col2">Mức Lương</th>
+                                    <th class="table-header col3">Họ</th>
+                                    <th class="table-header col1">Tên</th>
+                                    <th class="table-header col4">Chức vụ</th>
+                                    <th class="table-header col3">Mức Lương</th>
                                     <th class="table-header col2">Thưởng</th>
                                     <th class="table-header col2">Phạt</th>
-                                    <th class="table-header col2">Tổng nhận</th>
-                                    <th class="table-header col4">Chú thích</th>
+                                    <th class="table-header col3">Tổng nhận</th>
+                                    <th class="table-header col5">Chú thích</th>
                                 </tr>
                             </thead>
                             <tbody>
                         <%
                             List<NV> listLuong = (List<NV>)request.getAttribute("listLuong");
-                            int t = 0, k = 0;
+                            int t = 0, k = 0, j;
                             for(NV i:listLuong){
                                 t++; k = t%2;
                                 String ct = i.getChuthich();
                                 if(ct == null) ct = "";
+                                String[] w = i.getHoten().split("\\s+");
+                                String fname = "";
+                                for(j=0; j<w.length-1; j++){
+                                    fname+= w[j] + " ";
+                                }
+                                fname.trim();
+                                String lname = w[j];
                         %>
                                 
-                                <tr class="row<%=k%>" onclick="insert(<%=i.getId()%>)">
-                                    <td class="col0"><%=i.getId()%></td>
-                                    <td class="col2"><%=i.getThang()%></td>
-                                    <td class="col0"><%=i.getIdnv()%></td>
-                                    <td class="col3"><%=i.getHoten()%></td>
-                                    <td class="col3"><%=i.getChucvu()%></td>
-                                    <td class="right" class="col2"><%=i.getMucluong()%></td>
-                                    <td class="right" class="col2"><%=i.getThuong()%></td>
-                                    <td class="right" class="col2"><%=i.getPhat()%></td>
-                                    <td class="right" class="col2"><%=i.getTongnhan()%></td>
-                                    <td class="col4"><%=ct%></td>
+                                <tr onclick="insert(<%=i.getId()%>)">
+                                    <td class="center col0"><%=i.getId()%></td>
+                                    <td class="center col1"><%=i.getThang()%></td>
+                                    <td class="center col0"><%=i.getIdnv()%></td>
+                                    <td class="left col3"><%=fname%></td>
+                                    <td class="left col1"><%=lname%></td>
+                                    <td class="left col4"><%=i.getChucvu()%></td>
+                                    <td class="right col3"><%=i.getMucluong()%></td>
+                                    <td class="right col2"><%=i.getThuong()%></td>
+                                    <td class="right col2"><%=i.getPhat()%></td>
+                                    <td class="right col3"><%=i.getTongnhan()%></td>
+                                    <td class="left col5"><%=ct%></td>
                                 </tr>
                         <%
                             }
