@@ -55,7 +55,7 @@ public class SearchServlet extends HttpServlet {
         request.setAttribute("umonth", month);
         request.setAttribute("uyear", year);
         request.setAttribute("unv", request.getParameter("list-nv"));
-        request.setAttribute("listNV", dao.getAllNV());
+        request.setAttribute("listNV", dao.getAllNV(1));
         request.setAttribute("listLuong", list);
         request.getRequestDispatcher("salary.jsp").forward(request, response); 
     } 

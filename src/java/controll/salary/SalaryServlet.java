@@ -35,7 +35,7 @@ public class SalaryServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         NVDAO dao = new NVDAO();
         List<NV> listLuong = new ArrayList<>();
-        List<NV> listNV = dao.getAllNV(); 
+        List<NV> listNV = dao.getAllNV(2); 
 
         request.setAttribute("umonth", "0");
         request.setAttribute("uyear", "0");

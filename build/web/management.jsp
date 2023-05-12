@@ -88,7 +88,8 @@
                     </div>
                 </div>
                 
-                <div id="block-infor" class="main-block" style="display: none;">
+                <div id="block-infor" class="main-block">
+<!--                    style="display: none;"-->
                     <form method="post" action="" class="form" id="forminfo">
 
                         <h2 id="heading">Chỉnh sửa thông tin nhân viên</h1>

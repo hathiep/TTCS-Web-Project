@@ -37,13 +37,13 @@ public class AddMonthServlet extends HttpServlet {
         String year = request.getParameter("list-year");
         String thang = month + "/" + year;
         NVDAO dao = new NVDAO();
-        List<NV> listnv = dao.getAllNV();
+        List<NV> listnv = dao.getAllNV(1);
         
         for(NV i : listnv){
             dao.setLuong(i.getId(), thang);
         }
         List<NV> list = dao.getMonth(thang, 0);
-        request.setAttribute("listNV", dao.getAllNV());
+        request.setAttribute("listNV", dao.getAllNV(1));
         request.setAttribute("listLuong", list);
         request.getRequestDispatcher("salary.jsp").forward(request, response);        
     } 

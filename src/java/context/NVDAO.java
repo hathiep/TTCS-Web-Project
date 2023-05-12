@@ -12,12 +12,17 @@ public class NVDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
-    public List<NV> getAllNV(){
+    public List<NV> getAllNV(int work){
         List<NV> list = new ArrayList<>();
-        String query = "select * from nhanvien";
+        String query1 = "SELECT * FROM nhanvien";
+        String query2 = "SELECT * FROM nhanvien WHERE work=?";
         try {
             conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(query);
+            ps = conn.prepareStatement(query1);
+            if(work != 2){
+                ps = conn.prepareStatement(query2);
+                ps.setInt(1, work);
+            }
             rs = ps.executeQuery();
             while(rs.next()){
                 list.add(new NV(
@@ -28,9 +33,10 @@ public class NVDAO {
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getString(8),
-                        rs.getInt(9),
-                        rs.getString(10)
+                        rs.getInt(8),
+                        rs.getString(9),
+                        rs.getInt(10),
+                        rs.getString(11)
                 ));
             }
         } catch (Exception e) {
@@ -39,7 +45,7 @@ public class NVDAO {
     }
 
     public void addNV(int id, String hoten, String ngaysinh, String gioitinh, String sdt, String diachi, String ngaynhanviec, String chucvu, int mucluong, String chuthich){
-        String query = "insert into nhanvien values(?,?,?,?,?,?,?,?,?,?)";
+        String query = "insert into nhanvien values(?,?,?,?,?,?,?,1,?,?,?)";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -78,7 +84,7 @@ public class NVDAO {
     }
     
     public void deleteNV(int id){
-        String query = "delete nhanvien where id=?";
+        String query = "update nhanvien set work = 0 where id=?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);

@@ -35,7 +35,7 @@ public class DeleteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         int id = Integer.parseInt(request.getParameter("id"));
         NVDAO dao = new NVDAO();
-        List<NV> list = dao.getAllNV();
+        List<NV> list = dao.getAllNV(2);
         
             int ok = 0;
             for(NV i:list){

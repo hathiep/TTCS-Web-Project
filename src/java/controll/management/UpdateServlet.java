@@ -45,7 +45,7 @@ public class UpdateServlet extends HttpServlet {
         String chuthich = request.getParameter("chuthich");
         
         NVDAO dao = new NVDAO();
-        List<NV> list = dao.getAllNV();
+        List<NV> list = dao.getAllNV(2);
         if(hoten.split("\\s+").length<2){
             request.setAttribute("error", "Vui lòng điền đầy đủ họ và tên!");
             request.getRequestDispatcher("management").forward(request, response);

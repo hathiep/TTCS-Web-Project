@@ -45,7 +45,7 @@ public class AddServlet extends HttpServlet {
         String chuthich = request.getParameter("chuthich");
         
         NVDAO dao = new NVDAO();
-        List<NV> list = dao.getAllNV();
+        List<NV> list = dao.getAllNV(1);
         
         for(NV i:list){
             if(i.getId()==id){

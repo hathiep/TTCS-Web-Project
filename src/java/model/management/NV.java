@@ -3,7 +3,7 @@ package model.management;
 import java.util.Comparator;
 
 public class NV{
-    private int id, idnv;
+    private int id, idnv, work;
     private String hoten, ngaysinh, gioitinh, sdt, diachi, ngaynhanviec, chucvu, thang;
     private int mucluong, thuong, phat, tongnhan;
     private String chuthich;
@@ -11,7 +11,7 @@ public class NV{
     public NV() {
     }
 
-    public NV(int id, String hoten, String ngaysinh, String gioitinh, String sdt, String diachi, String ngaynhanviec, String chucvu, int mucluong, String chuthich) {
+    public NV(int id, String hoten, String ngaysinh, String gioitinh, String sdt, String diachi, String ngaynhanviec, int work, String chucvu, int mucluong, String chuthich) {
         this.id = id;
         this.hoten = hoten;
         this.ngaysinh = ngaysinh;
@@ -19,6 +19,7 @@ public class NV{
         this.sdt = sdt;
         this.diachi = diachi;
         this.ngaynhanviec = ngaynhanviec;
+        this.work = work;
         this.chucvu = chucvu;
         this.mucluong = mucluong;
         this.chuthich = chuthich;
@@ -99,6 +100,14 @@ public class NV{
 
     public void setNgaynhanviec(String ngaynhanviec) {
         this.ngaynhanviec = ngaynhanviec;
+    }
+
+    public int getWork() {
+        return work;
+    }
+
+    public void setWork(int work) {
+        this.work = work;
     }
     
     public String getChucvu() {

@@ -35,7 +35,7 @@ public class ManagementServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         NVDAO dao = new NVDAO();
-        List<NV> list = dao.getAllNV(); 
+        List<NV> list = dao.getAllNV(1); 
         
         request.setAttribute("listNV", list);
         request.getRequestDispatcher("management.jsp").forward(request, response);
