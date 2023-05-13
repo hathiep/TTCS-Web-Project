@@ -43,7 +43,7 @@ public class AddMonthServlet extends HttpServlet {
             dao.setLuong(i.getId(), thang);
         }
         List<NV> list = dao.getMonth(thang, 0);
-        request.setAttribute("listNV", dao.getAllNV(1));
+        request.setAttribute("listNV", dao.getAllNV(2));
         request.setAttribute("listLuong", list);
         request.getRequestDispatcher("salary.jsp").forward(request, response);        
     } 

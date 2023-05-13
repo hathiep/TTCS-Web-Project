@@ -137,21 +137,21 @@
                                     var filename = document.getElementById('filename');
 
                                     input.addEventListener('change', function() {
-                                      if (this.files && this.files[0]) {
-                                        var reader = new FileReader();
+                                        if (this.files && this.files[0]) {
+                                            var reader = new FileReader();
 
-                                        reader.onload = function(e) {
-                                          preview.setAttribute('src', e.target.result);
+                                            reader.onload = function(e) {
+                                                preview.setAttribute('src', e.target.result);
+                                            }
+
+                                            reader.readAsDataURL(this.files[0]);
+
+                                            filename.innerHTML = this.files[0].name;
+
+                                            input.setAttribute('title', '');
+                                        } else {
+                                            filename.innerHTML = "";
                                         }
-
-                                        reader.readAsDataURL(this.files[0]);
-
-                                        filename.innerHTML = this.files[0].name;
-
-                                        input.setAttribute('title', '');
-                                      } else {
-                                        filename.innerHTML = "";
-                                      }
                                     });
                                   </script>
                                 

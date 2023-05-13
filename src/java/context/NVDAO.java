@@ -47,7 +47,7 @@ public class NVDAO {
     }
 
     public void addNV(int id, String hoten, String ngaysinh, String gioitinh, String sdt, String diachi, String ngaynhanviec, String chucvu, int mucluong, String chuthich, String image){
-        String query = "insert into nhanvien values(?,?,?,?,?,?,?,1,?,?,?)";
+        String query = "insert into nhanvien values(?,?,?,?,?,?,?,1,?,?,?,?)";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);

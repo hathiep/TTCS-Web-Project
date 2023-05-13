@@ -74,7 +74,7 @@ public class UpdateLuongServlet extends HttpServlet {
                 request.setAttribute("umonth", month);
                 request.setAttribute("uyear", year);
                 request.setAttribute("unv", idnv);
-                request.setAttribute("listNV", dao.getAllNV(1));
+                request.setAttribute("listNV", dao.getAllNV(2));
                 request.setAttribute("listLuong", list);
                 request.getRequestDispatcher("salary.jsp").forward(request, response);
             }

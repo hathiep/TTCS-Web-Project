@@ -10,7 +10,7 @@ function insert(id){
             document.getElementById('idud').value = table[i].cells[0].innerText;
             document.getElementById('thang').innerHTML = table[i].cells[1].innerText;
             document.getElementById('idnv').innerHTML = table[i].cells[2].innerText;
-            document.getElementById('hoten').value = table[i].cells[3].innerText + " " + table[i].cells[4].innerText;
+            document.getElementById('hoten').innerHTML = table[i].cells[3].innerText + " " + table[i].cells[4].innerText;
             document.getElementById('chucvu').innerHTML = table[i].cells[5].innerText;
             document.getElementById('mucluong').innerHTML = table[i].cells[6].innerText;
             var thuong = table[i].cells[7].innerText;
