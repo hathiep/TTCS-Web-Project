@@ -33,8 +33,16 @@
                 <li id="languageprocess" class="menu-item"><a href="languageprocess">Xử lý ngôn ngữ tự nhiên</a></li>
             </div>
             <div class="home-main">
+                
+                <div id="block-work">
+                        <a id="link-all-nv" class="menu-work menu-item" href="management?work=2">Tất cả nhân viên</a>
+                        <a id="link-current-nv" class="menu-work menu-item" href="management?work=1">Nhân viên hiện tại</a>
+                        <a id="link-retired-nv" class="menu-work menu-item" href="management?work=0">Nhân viên đã nghỉ việc</a>
+                    </div>
                     
                 <div id="block-table" class="main-block">
+                                        
+                    <h2 class="heading"> Bảng thông tin ${header_table} </h2>
                     
                     <div id="box">
                         <table id="tbl-content" cellpadding="3" cellspacing="0" border="0">
@@ -79,6 +87,7 @@
                                     <td class="left col4"><%=i.getChucvu()%></td>
                                     <td class="right col2"><%=i.getMucluong()%></td>
                                     <td class="left col4"><%=i.getChuthich()%></td>
+                                    <td style="display:none"><%=i.getImage()%></td>
                                 </tr>
                          <%
                             }
@@ -90,10 +99,65 @@
                 
                 <div id="block-infor" class="main-block">
 <!--                    style="display: none;"-->
-                    <form method="post" action="" class="form" id="forminfo">
+                    <form method="post" action="" class="form" id="forminfo" enctype="multipart/form-data">
 
-                        <h2 id="heading">Chỉnh sửa thông tin nhân viên</h1>
+                        <h2 class="heading">Chỉnh sửa thông tin nhân viên</h1>
                         <h4 class="form-message" id="error">${error}</h4>
+                        
+                        <input class="form-input" id="idimage" name="idimage" type="hidden" value=""/>
+                        
+                        <%
+                            String srcImg = "#";
+                            List<NV> list2 = (List<NV>)request.getAttribute("listNV");
+                            String id = request.getParameter("idimage");
+                            String alt = "";
+                            if(id != null){
+                                for(NV i:list2){
+                                    if(i.getId()== Integer.parseInt(id)){
+                                        srcImg = i.getImage();
+                                        alt = i.getHoten();
+                                    }
+                                }
+                            }
+                            
+                        %>
+                        
+                        <div id="form-image" class="form-block">
+                            
+                            <div class="form-item3">
+                                
+                                <a id="link-image" style="width:100%;" src="#" target="_blank">
+                                    <img id="preview" src="#" alt="<%=alt%>" style="display: block;"/>
+                                </a>
+                                <input id="image" type="file" name="image"/>
+                                <label id="suggest" for="image">Chọn ảnh</label>
+                                <script>
+                                    var input = document.getElementById('image');
+                                    var preview = document.getElementById('preview');
+                                    var filename = document.getElementById('filename');
+
+                                    input.addEventListener('change', function() {
+                                      if (this.files && this.files[0]) {
+                                        var reader = new FileReader();
+
+                                        reader.onload = function(e) {
+                                          preview.setAttribute('src', e.target.result);
+                                        }
+
+                                        reader.readAsDataURL(this.files[0]);
+
+                                        filename.innerHTML = this.files[0].name;
+
+                                        input.setAttribute('title', '');
+                                      } else {
+                                        filename.innerHTML = "";
+                                      }
+                                    });
+                                  </script>
+                                
+                            </div>
+                            
+                        </div>    
 
                         <div id="form-left" class="form-block" onclick="hideerror()">
                             

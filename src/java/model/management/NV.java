@@ -1,17 +1,15 @@
 package model.management;
 
-import java.util.Comparator;
-
 public class NV{
     private int id, idnv, work;
     private String hoten, ngaysinh, gioitinh, sdt, diachi, ngaynhanviec, chucvu, thang;
     private int mucluong, thuong, phat, tongnhan;
-    private String chuthich;
+    private String chuthich, image;
 
     public NV() {
     }
 
-    public NV(int id, String hoten, String ngaysinh, String gioitinh, String sdt, String diachi, String ngaynhanviec, int work, String chucvu, int mucluong, String chuthich) {
+    public NV(int id, String hoten, String ngaysinh, String gioitinh, String sdt, String diachi, String ngaynhanviec, int work, String chucvu, int mucluong, String chuthich, String image) {
         this.id = id;
         this.hoten = hoten;
         this.ngaysinh = ngaysinh;
@@ -23,6 +21,7 @@ public class NV{
         this.chucvu = chucvu;
         this.mucluong = mucluong;
         this.chuthich = chuthich;
+        this.image = image;
     }
 
     public NV(int id, String thang, int idnv, String hoten, String chucvu, int mucluong, int thuong, int phat, String chuthich) {
@@ -165,5 +164,13 @@ public class NV{
     public void setChuthich(String chuthich) {
         this.chuthich = chuthich;
     }
-    
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
 }

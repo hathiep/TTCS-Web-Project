@@ -19,6 +19,7 @@ function insert(id){
             document.getElementById('mucluong').value = table[i].cells[9].innerText;
             document.getElementById('chuthich').value = table[i].cells[10].innerText;
             document.getElementById("block-infor").style.display = "block";
+            document.getElementById('preview').src = table[i].cells[11].innerText;
         }
     }
 
@@ -76,4 +77,20 @@ makeSortable();
 function hideerror(){
     document.getElementById('error').innerHTML = "";
 }
+
+$(document).ready(function() {
+  // Tìm mục menu hiện tại dựa trên URL
+  var currentMenuItem = $('.menu a[href="' + window.location.pathname + '"]').parent();
+
+  // Thêm lớp active vào mục menu hiện tại
+  currentMenuItem.addClass('active');
+
+  // Bắt sự kiện click vào mục menu
+  $('.menu-item a').click(function() {
+    // Loại bỏ lớp active khỏi tất cả các mục menu
+    $('.menu-item a').removeClass('active');
+    // Thêm lớp active vào mục menu được chọn
+    $(this).addClass('active');
+  });
+});
 

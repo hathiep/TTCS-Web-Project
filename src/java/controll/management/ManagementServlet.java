@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import model.management.NV;
@@ -33,11 +34,19 @@ public class ManagementServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        String swork = request.getParameter("work");
+        int work;
+        if(swork == null) work = 2;
+        else work = Integer.parseInt(swork);
         NVDAO dao = new NVDAO();
-        List<NV> list = dao.getAllNV(1); 
+        List<NV> list = dao.getAllNV(work);
         
+        String s = "";
+        if(work == 2) s = "Tất cả nhân viên";
+        if(work == 1) s = "Nhân viên hiện tại";
+        if(work == 0) s = "Nhân viên đã nghỉ việc";
         request.setAttribute("listNV", list);
+        request.setAttribute("header_table", s);
         request.getRequestDispatcher("management.jsp").forward(request, response);
     }
 

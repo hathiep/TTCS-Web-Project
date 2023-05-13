@@ -1,5 +1,6 @@
 package context;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,7 +37,8 @@ public class NVDAO {
                         rs.getInt(8),
                         rs.getString(9),
                         rs.getInt(10),
-                        rs.getString(11)
+                        rs.getString(11),
+                        rs.getString(12)
                 ));
             }
         } catch (Exception e) {
@@ -44,7 +46,7 @@ public class NVDAO {
         return list;
     }
 
-    public void addNV(int id, String hoten, String ngaysinh, String gioitinh, String sdt, String diachi, String ngaynhanviec, String chucvu, int mucluong, String chuthich){
+    public void addNV(int id, String hoten, String ngaysinh, String gioitinh, String sdt, String diachi, String ngaynhanviec, String chucvu, int mucluong, String chuthich, String image){
         String query = "insert into nhanvien values(?,?,?,?,?,?,?,1,?,?,?)";
         try {
             conn = new DBContext().getConnection();
@@ -59,12 +61,14 @@ public class NVDAO {
             ps.setString(8, chucvu);
             ps.setInt(9, mucluong);
             ps.setString(10, chuthich);
+            ps.setString(11, image);
             ps.executeUpdate();
         } catch (Exception e) {
         }
     }
-    public void updateNV(int id, String hoten, String ngaysinh, String gioitinh, String sdt, String diachi, String ngaynhanviec, String chucvu, int mucluong, String chuthich){
-        String query = "update nhanvien set hoten=?, ngaysinh=?, gioitinh=?, sdt=?, diachi=?, ngaynhanviec=?, chucvu=?, mucluong=?, chuthich=? where id=?";
+    
+    public void updateNV(int id, String hoten, String ngaysinh, String gioitinh, String sdt, String diachi, String ngaynhanviec, String chucvu, int mucluong, String chuthich, String image){
+        String query = "update nhanvien set hoten=?, ngaysinh=?, gioitinh=?, sdt=?, diachi=?, ngaynhanviec=?, chucvu=?, mucluong=?, chuthich=?, image=? where id=?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -77,7 +81,8 @@ public class NVDAO {
             ps.setString(7, chucvu);
             ps.setInt(8, mucluong);
             ps.setString(9, chuthich);
-            ps.setInt(10, id);
+            ps.setString(10, image);
+            ps.setInt(11, id);
             ps.executeUpdate();
         } catch (Exception e) {
         }

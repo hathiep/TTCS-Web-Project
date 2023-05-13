@@ -13,6 +13,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+import java.io.InputStream;
 import java.util.List;
 import model.management.NV;
 
@@ -43,6 +45,7 @@ public class AddServlet extends HttpServlet {
         String chucvu = request.getParameter("chucvu");
         int mucluong = Integer.parseInt(request.getParameter("mucluong"));
         String chuthich = request.getParameter("chuthich");
+        String image = request.getParameter("image");
         
         NVDAO dao = new NVDAO();
         List<NV> list = dao.getAllNV(1);
@@ -58,7 +61,7 @@ public class AddServlet extends HttpServlet {
             request.getRequestDispatcher("management").forward(request, response);
         }
         else{
-            dao.addNV(id, hoten, ngaysinh, gioitinh, sdt, diachi, ngaynhanviec, chucvu, mucluong, chuthich);
+            dao.addNV(id, hoten, ngaysinh, gioitinh, sdt, diachi, ngaynhanviec, chucvu, mucluong, chuthich, image);
             response.sendRedirect("management");
         }
     } 
