@@ -54,6 +54,9 @@ public class AddServlet extends HttpServlet {
         String chucvu = request.getParameter("chucvu");
         int mucluong = Integer.parseInt(request.getParameter("mucluong"));
         String chuthich = request.getParameter("chuthich");
+
+        String imageUrl = "";
+
         String savePath = getServletContext().getRealPath("/") + "images/";
 
         // Kiểm tra nếu thư mục không tồn tại thì tạo thư mục mới
@@ -64,23 +67,24 @@ public class AddServlet extends HttpServlet {
 
         // Lấy tệp ảnh từ yêu cầu POST
         Part filePart = request.getPart("image");
-        String fileName = getFileName(filePart);
+        if (filePart != null && filePart.getSize() > 0) {
+            String fileName = getFileName(filePart);
+            // Lưu ảnh vào thư mục lưu trữ
+            OutputStream out = new FileOutputStream(new File(savePath + File.separator + fileName));
+            InputStream fileContent = filePart.getInputStream();
+            int read = 0;
+            final byte[] bytes = new byte[1024];
+            while ((read = fileContent.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
 
-        // Lưu ảnh vào thư mục lưu trữ
-        OutputStream out = new FileOutputStream(new File(savePath + File.separator + fileName));
-        InputStream fileContent = filePart.getInputStream();
-        int read = 0;
-        final byte[] bytes = new byte[1024];
-        while ((read = fileContent.read(bytes)) != -1) {
-            out.write(bytes, 0, read);
+            // Giải phóng tài nguyên
+            out.close();
+            fileContent.close();
+
+            // Lưu đường dẫn của ảnh vào database
+            imageUrl = "images/" + fileName;
         }
-
-        // Giải phóng tài nguyên
-        out.close();
-        fileContent.close();
-
-        // Lưu đường dẫn của ảnh vào database
-        String imageUrl = "images/" + fileName;
         
         NVDAO dao = new NVDAO();
         List<NV> list = dao.getAllNV(1);

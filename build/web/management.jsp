@@ -22,7 +22,7 @@
         </div>
         <div class="home-body">
             <div class="home-menu">
-                <li id="home" class="menu-item"><a href="index.jsp">Trang chủ</a></li>
+                <li class="menu-item"><a href="index.jsp">Trang chủ</a></li>
                 <li id="management" class="menu-item">Quản lý nhân viên
                     <ul class="sub-menu">
                         <li><a href="management">Thông tin nhân viên</a></li>
@@ -106,28 +106,13 @@
                         
                         <input class="form-input" id="idimage" name="idimage" type="hidden" value=""/>
                         
-                        <%
-                            String srcImg = "#";
-                            List<NV> list2 = (List<NV>)request.getAttribute("listNV");
-                            String id = request.getParameter("idimage");
-                            String alt = "";
-                            if(id != null){
-                                for(NV i:list2){
-                                    if(i.getId()== Integer.parseInt(id)){
-                                        srcImg = i.getImage();
-                                        alt = i.getHoten();
-                                    }
-                                }
-                            }
-                            
-                        %>
                         
                         <div id="form-image" class="form-block">
                             
                             <div class="form-item3">
                                 
                                 <a id="link-image" style="width:100%;" src="#" target="_blank">
-                                    <img id="preview" src="#" alt="<%=alt%>" style="display: block;"/>
+                                    <img id="preview" src="#" alt="" style="display: block;"/>
                                 </a>
                                 <input id="image" type="file" name="image"/>
                                 <label id="suggest" for="image">Chọn ảnh</label>

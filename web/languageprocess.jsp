@@ -22,7 +22,7 @@
     </div>
     <div class="home-body">
         <div class="home-menu">
-            <li id="home" class="menu-item"><a href="index.jsp">Trang chủ</a></li>
+            <li class="menu-item"><a href="index.jsp">Trang chủ</a></li>
             <li id="management" class="menu-item">Quản lý nhân viên
                 <ul class="sub-menu">
                     <li><a href="management">Thông tin nhân viên</a></li>

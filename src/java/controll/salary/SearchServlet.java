@@ -52,9 +52,23 @@ public class SearchServlet extends HttpServlet {
         else {
             list = dao.getMonth(thang, id); 
         }
+        String hoten = "";
+        if(id == 0) hoten = "Tất cả nhân viên";
+        else for(NV i : list){
+            if(i.getId() == id){
+                hoten = i.getHoten();
+                break;
+            }
+        }
         request.setAttribute("umonth", month);
         request.setAttribute("uyear", year);
         request.setAttribute("unv", request.getParameter("list-nv"));
+        if(month.equals("0")) request.setAttribute("month", "Tất cả tháng");
+        else if(month.charAt(0) == '0' ) request.setAttribute("month", "Tháng " + month.charAt(1));
+        else request.setAttribute("month", "Tháng " + month);
+        if(year.equals("0")) request.setAttribute("year", "Tất cả năm");
+        else request.setAttribute("year", "Năm " + year);
+        request.setAttribute("nv", "của " + hoten);
         request.setAttribute("listNV", dao.getAllNV(2));
         request.setAttribute("listLuong", list);
         request.getRequestDispatcher("salary.jsp").forward(request, response); 

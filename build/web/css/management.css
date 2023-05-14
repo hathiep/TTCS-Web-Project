@@ -1,3 +1,7 @@
+#management {
+    background: blue;
+    color: #fff;
+}
 .main-block{
     width: 98%;
     height: fit-content;

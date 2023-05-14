@@ -53,6 +53,12 @@ public class UpdateServlet extends HttpServlet {
         String chucvu = request.getParameter("chucvu");
         int mucluong = Integer.parseInt(request.getParameter("mucluong"));
         String chuthich = request.getParameter("chuthich");
+        
+        NVDAO dao = new NVDAO();
+        List<NV> list = dao.getAllNV(2);
+        
+        String imageUrl = "";
+
         String savePath = getServletContext().getRealPath("/") + "images/";
 
         // Kiểm tra nếu thư mục không tồn tại thì tạo thư mục mới
@@ -63,43 +69,45 @@ public class UpdateServlet extends HttpServlet {
 
         // Lấy tệp ảnh từ yêu cầu POST
         Part filePart = request.getPart("image");
-        String fileName = getFileName(filePart);
+        if (filePart != null) {
+            String fileName = getFileName(filePart);
+            // Lưu ảnh vào thư mục lưu trữ
+            OutputStream out = new FileOutputStream(new File(savePath + File.separator + fileName));
+            InputStream fileContent = filePart.getInputStream();
+            int read = 0;
+            final byte[] bytes = new byte[1024];
+            while ((read = fileContent.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
 
-        // Lưu ảnh vào thư mục lưu trữ
-        OutputStream out = new FileOutputStream(new File(savePath + File.separator + fileName));
-        InputStream fileContent = filePart.getInputStream();
-        int read = 0;
-        final byte[] bytes = new byte[1024];
-        while ((read = fileContent.read(bytes)) != -1) {
-            out.write(bytes, 0, read);
+            // Giải phóng tài nguyên
+            out.close();
+            fileContent.close();
+
+            // Lưu đường dẫn của ảnh vào database
+            imageUrl = "images/" + fileName;
+        }
+        else{
+            for(NV i : list){
+                if(i.getId() == id){
+                    imageUrl = i.getImage();
+                }
+            }
         }
 
-        // Giải phóng tài nguyên
-        out.close();
-        fileContent.close();
-
-        // Lưu đường dẫn của ảnh vào database
-        String imageUrl = "images/" + fileName;
-
-        NVDAO dao = new NVDAO();
-        List<NV> list = dao.getAllNV(2);
         if(hoten.split("\\s+").length<2){
             request.setAttribute("error", "Vui lòng điền đầy đủ họ và tên!");
             request.getRequestDispatcher("management").forward(request, response);
         }
         else{
-            int ok = 0;
             for(NV i:list){
                 if(id == i.getId()){
                     dao.updateNV(id, hoten, ngaysinh, gioitinh, sdt, diachi, ngaynhanviec, chucvu, mucluong, chuthich, imageUrl);
-                    ok = 1;
-                    response.sendRedirect("management");
+                    request.getRequestDispatcher("management").forward(request, response);
                 }
             }
-            if(ok==0){
-                request.setAttribute("error", "Id không đúng!");
-                request.getRequestDispatcher("management.jsp").forward(request, response);
-            }
+            request.setAttribute("error", "Id không đúng!");
+            request.getRequestDispatcher("management").forward(request, response);
         }
     }
     // Phương thức lấy tên file từ Part

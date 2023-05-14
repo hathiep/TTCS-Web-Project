@@ -9,6 +9,7 @@ import context.NVDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +22,11 @@ import model.management.NV;
  * @author havanthiep
  */
 @WebServlet(name="DeleteServlet", urlPatterns={"/delete"})
+@MultipartConfig(
+    fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+    maxFileSize = 1024 * 1024 * 10, // 10MB
+    maxRequestSize = 1024 * 1024 * 50 // 50MB
+)
 public class DeleteServlet extends HttpServlet {
    
     /** 
@@ -37,18 +43,20 @@ public class DeleteServlet extends HttpServlet {
         NVDAO dao = new NVDAO();
         List<NV> list = dao.getAllNV(2);
         
-            int ok = 0;
-            for(NV i:list){
-                if(id == i.getId()){
-                    dao.deleteNV(id);
-                    ok = 1;
-                    response.sendRedirect("management");
-                }
+        
+        int ok = 0;
+        for(NV i:list){
+            if(id == i.getId()){
+                dao.deleteNV(id);
+                ok = 1;
+                response.sendRedirect("management");
             }
-            if(ok==0){
-                request.setAttribute("error", "Id không đúng!");
-                request.getRequestDispatcher("management.jsp").forward(request, response);
-            }
+        }
+        if(ok==0){
+            request.setAttribute("error", "Id không đúng!");
+            request.getRequestDispatcher("management").forward(request, response);
+        }
+            
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

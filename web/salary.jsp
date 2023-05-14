@@ -22,7 +22,7 @@
         </div>
         <div class="home-body">
             <div class="home-menu">
-                <li id="home" class="menu-item"><a href="index.jsp">Trang chủ</a></li>
+                <li class="menu-item"><a href="index.jsp">Trang chủ</a></li>
                 <li id="management" class="menu-item">Quản lý nhân viên
                     <ul class="sub-menu">
                         <li><a href="management">Thông tin nhân viên</a></li>
@@ -33,9 +33,15 @@
                 <li id="languageprocess" class="menu-item"><a href="languageprocess">Xử lý ngôn ngữ tự nhiên</a></li>
             </div>
             <div class="home-main">
+                
+    
                     
                 <div id="block-table" class="main-block">
-                    <form method="post" id="sort">
+                    
+                    <h2 class="heading"> Bảng lương ${month} ${year} ${nv} </h2>
+                    
+                    <form method="post" id="search">
+                        
                         <div id="month-block" class="time-block">
                             <label for="list-month">Chọn tháng: </label>
                             <select class="form-inputb" class="list-select" value="" name="list-month" id="list-month">
@@ -83,7 +89,7 @@
                                 List<NV> list = (List<NV>)request.getAttribute("listNV");
                                 for(NV i:list){
                             %>    
-                                    <option value="<%=i.getId()%>"><%=i.getHoten()%></option>
+                                    <option class="work<%=i.getWork()%>" value="<%=i.getId()%>"><%=i.getHoten()%></option>
                             <%
                                 }
                             %> 
@@ -149,13 +155,13 @@
                     </div>
                 </div>
                 
-                <div id="block-table" class="main-block">
+                <div id="block-update" class="main-block">
                     <form method="post" action="" class="form" id="forminfo">
                         <input class="form-input" id="ipmonth" name="ipmonth" type=hidden value="<%=request.getAttribute("umonth")%>">
                         <input class="form-input" id="ipyear" name="ipyear" type=hidden value="<%=request.getAttribute("uyear")%>">
                         <input class="form-input" id="ipnv" name="ipnv" type=hidden value="<%=request.getAttribute("unv")%>">
 
-                        <h2 id="heading">Chỉnh sửa lương nhân viên</h1>
+                        <h2 class="heading">Chỉnh sửa lương nhân viên</h1>
                         <h4 class="form-message" id="error">${error}</h4>
 
                         <div id="form-left" class="form-block" onclick="hideerror()">

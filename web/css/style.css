@@ -52,9 +52,12 @@ h1 {
     padding: 12px 12px;
     color: blue;
 }
-.home-menu > li:hover{
-    background-color: #ffffff;
+.home-menu li {
     border-radius: 6px;
+}
+.home-menu > li:hover{
+    background-color: blue;
+    color: #fff;
     box-shadow: 0 4px 8px 0 rgba(252, 252, 252, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
     outline-color: rgba(255, 255, 255, 0);
     outline-offset: 15px;
@@ -62,6 +65,10 @@ h1 {
 }
 .home-menu > li:hover .sub-menu {
     display: block;
+}
+#home {
+    background: blue;
+    color: #fff;
 }
 .menu-item {
     list-style: none;
@@ -83,6 +90,7 @@ h1 {
 }
 .sub-menu {
     position: absolute;
+    z-index: 2;
     color: black;
     width: 100%;
     top: 50px;
