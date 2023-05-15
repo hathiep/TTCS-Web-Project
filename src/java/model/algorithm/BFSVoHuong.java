@@ -50,7 +50,7 @@ public class BFSVoHuong {
         Collections.reverse(res);
         String st = "" + str.charAt(res.get(0));
         for (int i = 1; i < res.size(); i++){
-            st+="->"+str.charAt(res.get(i));
+            st+= " " + str.charAt(res.get(i));
             k = 1;
         }
         if(k==1) return st;

@@ -46,7 +46,7 @@ public class DFSCoHuong {
         Collections.reverse(res);
         String st = "" + str.charAt(res.get(0));
         for (int i = 1; i < res.size(); i++){
-            st+="->"+str.charAt(res.get(i));
+            st+= " " + str.charAt(res.get(i));
         }
         return st;
     }

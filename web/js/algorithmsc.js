@@ -73,141 +73,201 @@ function delete_edge(e){
         drawGraph(list_edge.join(" "));
     }
 }
-function displayResult(listEdge) {
+function displayResult(listEdge, pathString) {
 
-    if(listEdge.trim().length > 4) drawGraph(listEdge);
+    if(listEdge.trim().length < 5) return;
+    
+    document.getElementById('mySvg').innerHTML = '';
     
     
-//    let list_edges = listEdge.split(" ");
-//    let edges = [];
-//    let vertices = new Map();
-//
-//    for (let i = 0; i < list_edges.length; i++) {
-//        let edge = list_edges[i];
-//        let source = edge.charAt(0);
-//        let target = edge.charAt(1);
-//
-//        if (!vertices.has(source)) {
-//          vertices.set(source, { id: source });
-//        }
-//        if (!vertices.has(target)) {
-//          vertices.set(target, { id: target });
-//        }
-//
-//        edges.push({ source: source, target: target });
-//    }
-//
-//    const svg = d3.select('#mySvg');
-//    const width = parseInt(svg.style('width'), 10);
-//    const height = parseInt(svg.style('height'), 10);
-//
-//    const simulation = d3.forceSimulation(Array.from(vertices.values()))
-//    .force('link', d3.forceLink(edges).id(d => d.id))
-//    .force('charge', d3.forceManyBody().strength(-800))
-//    .force('center', d3.forceCenter(width / 2, height / 2))
-//    .force('collision', d3.forceCollide().radius(30));
-//
-//  //    const defs = svg.append('defs');
-//  //
-//  //    defs.append('marker')
-//  //    .attr('id', 'arrow')
-//  //    .attr('viewBox', '0 -5 10 10')
-//  //    .attr('refX', 10)
-//  //    .attr('refY', 0)
-//  //    .attr('markerWidth', 4)
-//  //    .attr('markerHeight', 4)
-//  //    .attr('orient', 'auto')
-//  //    .append('path')
-//  //    .attr('d', 'M0,-5L10,0L0,5')
-//  //    .attr('fill', '#999');
-//  //
-//  //    const tooltip = d3.select('body').append('div')
-//  //      .attr('class', 'tooltip')
-//  //      .style('opacity', 0);
-//
-//    const link = svg.append('g')
-//    .attr('stroke', '#999')
-//    .attr('stroke-opacity', 0.6)
-//    .selectAll('line')
-//    .data(edges)
-//    .join('line')
-//    .attr('stroke-width', 2);
-//  //  .attr('marker-end', 'url(#arrow)')
-//  //  .attr('x1', d => vertices.get(d.source).x)
-//  //  .attr('y1', d => vertices.get(d.source).y)
-//  //  .attr('x2', d => vertices.get(d.target).x)
-//  //  .attr('y2', d => vertices.get(d.target).y);
-//
-//    const node = svg.append('g')
-//    .attr('stroke', '#fff')
-//    .attr('stroke-width', 1.5)
-//    .selectAll('circle')
-//    .data(Array.from(vertices.values()))
-//    .join('circle')
-//    .attr('r', 22)
-//    .attr('fill', '#69b3a2')
-//    .on('mouseover', function (event, d) {
-//        d3.select(this).attr('r', 26);
-//        tooltip.text(d.id)
-//        .style('left', (event.pageX + 10) + 'px')
-//        .style('top', (event.pageY - 25) + 'px')
-//        .style('opacity', 1);
-//    })
-//    .on('mouseout', function (event, d) {
-//        d3.select(this).attr('r', 22);
-//        tooltip.style('opacity', 0);
-//    })
-//    .call(drag(simulation));
-//
-//    const label = svg.append('g')
-//      .attr('font-family', 'sans-serif')
-//      .attr('font-size', 18)
-//      .selectAll('text')
-//      .data(Array.from(vertices.values()))
-//      .join('text')
-//      .text(d => d.id)
-//      .attr('dx', -5)
-//      .attr('dy', +5);
-//
-//    simulation.on('tick', () => {
-//        link
-//          .attr('x1', d => d.source.x)
-//          .attr('y1', d => d.source.y)
-//          .attr('x2', d => d.target.x)
-//          .attr('y2', d => d.target.y);
-//
-//        node
-//          .attr('cx', d => d.x)
-//          .attr('cy', d => d.y);
-//
-//        label
-//          .attr('x', d => d.x)
-//          .attr('y', d => d.y);
-//    });
-//
-//    function drag(simulation) {
-//        function dragstarted(event, d) {
-//            if (!event.active) simulation.alphaTarget(0.3).restart();
-//            d.fx = d.x;
-//            d.fy = d.y;
-//        }
-//
-//        function dragged(event, d) {
-//            d.fx = event.x;
-//            d.fy = event.y;
-//        }
-//
-//        function dragended(event, d) {
-//            if (!event.active) simulation.alphaTarget(0);
-//            d.fx = null;
-//            d.fy = null;
-//        }
-//
-//        return d3.drag()
-//          .on('start', dragstarted)
-//          .on('drag', dragged)
-//          .on('end', dragended);
-//    }
+    let list_edges = listEdge.split(" ");
+    let edges = [];
+    let vertices = new Map();
+
+    for (let i = 0; i < list_edges.length; i++) {
+        let edge = list_edges[i];
+        let source = edge.charAt(0);
+        let target = edge.charAt(1);
+
+        if (!vertices.has(source)) {
+          vertices.set(source, { id: source });
+        }
+        if (!vertices.has(target)) {
+          vertices.set(target, { id: target });
+        }
+
+        edges.push({ source: source, target: target });
+    }
+
+    const svg = d3.select('#mySvg');
+    const width = parseInt(svg.style('width'), 10);
+    const height = parseInt(svg.style('height'), 10);
+    
+
+    const simulation = d3.forceSimulation(Array.from(vertices.values()))
+    .force('link', d3.forceLink(edges).id(d => d.id).distance(100).strength(1))
+    .force('charge', d3.forceManyBody().strength(10))
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(50));
+
+    const link = svg.append('g')
+    .attr('stroke', '#999')
+    .attr('stroke-opacity', 0.6)
+    .selectAll('line')
+    .data(edges)
+    .join('line')
+    .attr('stroke-width', 2);
+
+    const node = svg.append('g')
+    .attr('stroke', '#000')
+    .attr('stroke-width', 1.5)
+    .selectAll('circle')
+    .data(Array.from(vertices.values()))
+    .join('circle')
+    .attr('r', 22)
+    .attr('fill', '#fff') // #69b3a2
+    .on('mouseover', function (event, d) {
+        d3.select(this).attr('r', 26);
+        tooltip.text(d.id)
+        .style('left', (event.pageX + 10) + 'px')
+        .style('top', (event.pageY - 25) + 'px')
+        .style('opacity', 1);
+    })
+    .on('mouseout', function (event, d) {
+        d3.select(this).attr('r', 22);
+        tooltip.style('opacity', 0);
+    })
+    .call(drag(simulation));
+
+    const label = svg.append('g')
+      .attr('font-family', 'Helvetica, Arial, Tahoma, sans-serif')
+      .attr('font-size', 20)
+      .attr('font-weight', 'bold')
+      .selectAll('text')
+      .data(Array.from(vertices.values()))
+      .join('text')
+      .text(d => d.id)
+      .attr('dx', -5)
+      .attr('dy', +5);
+
+    simulation.on('tick', () => {
+        link
+          .attr('x1', d => d.source.x)
+          .attr('y1', d => d.source.y)
+          .attr('x2', d => d.target.x)
+          .attr('y2', d => d.target.y);
+
+        node
+          .attr('cx', d => d.x)
+          .attr('cy', d => d.y);
+
+        label
+          .attr('x', d => d.x)
+          .attr('y', d => d.y);
+    });
+    
+    if(pathString!=null){
+        let pathEdge = pathString.split(" ");
+        let pathStart = [pathEdge[0]];
+        let pathFinish = [pathEdge[pathEdge.length-1]];
+        let pathVertex = [];
+        for(let i=1; i<pathEdge.length-1; i++){
+            pathVertex.push(pathEdge[i]);
+        }
+        
+        let pathEdge2 = [];
+        for (let i = 0; i < pathEdge.length - 1; i++) {
+            let source = pathEdge[i];
+            let target = pathEdge[i + 1];
+            let link2 = edges.find(d => d.source.id === source && d.target.id === target);
+            if (link2) {
+                pathEdge2.push(source);
+            }
+        }
+        pathEdge2.push(pathFinish[0]);
+
+        const pathColor = 'green';
+        const startColor = 'yellow';
+        const vertexColor = '#22ff00';
+        const finishColor = '#00ffff';
+
+        // Update the link color for the path
+        link.attr('stroke', d => {
+            let sourceInPath = pathEdge2.includes(d.source.id);
+            let targetInPath = pathEdge2.includes(d.target.id);
+            let linkInPath = sourceInPath && targetInPath;
+            if (linkInPath && isAdjacentEdge(d, pathEdge2)) {
+              return pathColor;
+            } else {
+              return '#999';
+            }
+        });
+
+        function isAdjacentEdge(edge, path) {
+            let sourceIndex = path.indexOf(edge.source.id);
+            let targetIndex = path.indexOf(edge.target.id);
+            if (sourceIndex !== -1 && targetIndex !== -1 && Math.abs(sourceIndex - targetIndex) === 1) {
+              return true;
+            } else {
+              return false;
+            }
+        }
+        
+        node.attr('fill', d => {
+            if (pathVertex.includes(d.id)) {
+                return vertexColor;
+            } else if (pathStart.includes(d.id)) {
+                return startColor;
+            } else if (pathFinish.includes(d.id)) {
+                return finishColor;
+            } else {
+                return '#fff';
+            }
+        });
+    }
+
+    function drag(simulation) {
+        let selected = null;
+        let initialPositions = new Map();
+
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            selected = d.id;
+            d.fx = d.x;
+            d.fy = d.y;
+            vertices.forEach(function (value, key) {
+                initialPositions.set(key, { x: value.x, y: value.y });
+            });
+        }
+
+        function dragged(event, d) {
+            if (selected !== d.id) return;
+            d.fx = event.x;
+            d.fy = event.y;
+            vertices.forEach(function (value, key) {
+                if (key !== d.id) {
+                    value.x = initialPositions.get(key).x;
+                    value.y = initialPositions.get(key).y;
+                }
+            });
+        }
+
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            selected = null;
+            vertices.forEach(function (value, key) {
+                if (value.x === null && value.y === null) {
+                    value.x = Math.random() * 800;
+                    value.y = Math.random() * 800;
+                }
+            });
+        }
+
+        return d3.drag()
+            .on('start', dragstarted)
+            .on('drag', dragged)
+            .on('end', dragended);
+    }
 }
 function drawGraph(listEdge) {
     
@@ -299,7 +359,7 @@ function drawGraph(listEdge) {
           .attr('x', d => d.x)
           .attr('y', d => d.y);
     });
-
+    
     function drag(simulation) {
         let selected = null;
         let initialPositions = new Map();

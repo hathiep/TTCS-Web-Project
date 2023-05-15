@@ -169,6 +169,7 @@
                     <button class="form-button" id="button-search" type="submit" >Tìm kiếm đường đi</button>
                     <%
                         String edgeString = (String) request.getAttribute("edgeString");
+                        String pathString = (String) request.getAttribute("pathString");
                     %>
 
                 </form>
@@ -180,7 +181,7 @@
                     <h3 id="ans">Kết quả: ${ans}</h3>
                     <svg id="mySvg" style="width: 650px; height: 550px;"></svg>
                     <script>
-                        displayResult('<%=edgeString%>');
+                        displayResult('<%=edgeString%>', '<%=pathString%>');
                     </script>
 
                 </form>
