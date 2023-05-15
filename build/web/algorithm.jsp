@@ -179,7 +179,15 @@
             
                     <h2 id="heading">Ðường đi ngắn nhất ${snode} ${fnode} theo thuật toán ${type}</h1>
                     <h3 id="ans">Kết quả: ${ans}</h3>
-                    <svg id="mySvg" style="width: 650px; height: 550px;"></svg>
+                    <svg id="mySvg" style="width: 650px; height: 550px;">
+                        <defs>
+                            <marker id="arrowhead" viewBox="0 -5 10 10" refX="38" refY="0"
+                                markerWidth="6" markerHeight="6"
+                                orient="auto">
+                                <path d="M0,-5L10,0L0,5" stroke="#333" stroke-width="1.5px" fill="#333"></path>
+                            </marker>
+                        </defs>
+                    </svg>
                     <script>
                         displayResult('<%=edgeString%>', '<%=pathString%>');
                     </script>

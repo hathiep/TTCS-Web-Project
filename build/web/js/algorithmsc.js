@@ -116,7 +116,9 @@ function displayResult(listEdge, pathString) {
     .selectAll('line')
     .data(edges)
     .join('line')
-    .attr('stroke-width', 2);
+    .attr('stroke-width', 2)
+    .attr('stroke', '#333')
+    .attr('marker-end', 'url(#arrowhead)');
 
     const node = svg.append('g')
     .attr('stroke', '#000')
@@ -310,8 +312,10 @@ function drawGraph(listEdge) {
     .selectAll('line')
     .data(edges)
     .join('line')
-    .attr('stroke-width', 2);
-
+    .attr('stroke-width', 2)
+    .attr('stroke', '#333')
+    .attr('marker-end', 'url(#arrowhead)');
+    
     const node = svg.append('g')
     .attr('stroke', '#000')
     .attr('stroke-width', 1.5)
