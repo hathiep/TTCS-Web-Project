@@ -110,6 +110,19 @@ function displayResult(listEdge, pathString) {
     .force('center', d3.forceCenter(width / 2, height / 2))
     .force('collision', d3.forceCollide().radius(50));
 
+    const arrowhead = svg.append('marker')
+    .attr('id', 'arrowhead')
+    .attr('viewBox', '-10 -10 20 20')
+    .attr('refX', 22)
+    .attr('refY', 0)
+    .attr('markerWidth', 10)
+    .attr('markerHeight', 10)
+    .attr('orient', 'auto')
+    .append('path')
+    .attr('d', 'M -12,-5 L 0,0 L -12,5')
+    .attr('stroke', '#333')
+    .attr('fill', '#333');
+
     const link = svg.append('g')
     .attr('stroke', '#999')
     .attr('stroke-opacity', 0.6)
@@ -305,6 +318,19 @@ function drawGraph(listEdge) {
     .force('charge', d3.forceManyBody().strength(10))
     .force('center', d3.forceCenter(width / 2, height / 2))
     .force('collision', d3.forceCollide().radius(50));
+
+    const arrowhead = svg.append('marker')
+    .attr('id', 'arrowhead')
+    .attr('viewBox', '-10 -10 20 20')
+    .attr('refX', 22)
+    .attr('refY', 0)
+    .attr('markerWidth', 10)
+    .attr('markerHeight', 10)
+    .attr('orient', 'auto')
+    .append('path')
+    .attr('d', 'M -12,-5 L 0,0 L -12,5')
+    .attr('stroke', '#333')
+    .attr('fill', '#333');
 
     const link = svg.append('g')
     .attr('stroke', '#999')
