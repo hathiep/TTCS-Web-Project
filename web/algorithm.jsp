@@ -14,6 +14,9 @@
     <title>Thuật toán</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/algorithm.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/d3-svg-arrowhead"></script>
+    <script src="js/algorithmsc.js"></script>
 </head>
 <body>
     <div class="home-heading">
@@ -33,7 +36,7 @@
         </div>
         <div class="home-main">
             <div class="main-block" id="request">
-                <form method="post" action="algorithmcontrol" class="form">
+                <form class="form" method="post" action="algorithmcontrol">
             
                     <h2 id="heading">Thuật toán tìm kiếm đường đi ngắn nhất</h1>
 
@@ -151,7 +154,7 @@
                             </select>
                         </div>
                         
-                        <button class="form-button" id="button-add" type="submit" onclick="add_edge()">Thêm cạnh</button>
+                        <button class="form-button" id="button-add" type="button" onclick="add_edge()">Thêm cạnh</button>
                         <button class="form-button" id="button-delete" type="submit" onclick="delete_edge()">Xoá cạnh</button>
                     </div>
 
@@ -160,23 +163,30 @@
                         <div class="form-label" id="label-bottom" >Danh sách cạnh:</div><br>
                         <div id="list_edge"></div>
                         <input class="form-input" id="list_input_edge" name="list_input_edge" hidden="true" type="text"/>
-                                
+                        <input class="form-input" id="list_split_edge" name="list_split_edge" hidden="true" type="text"/>
                     </div>
                     
-                    <button class="form-button" id="button-search" type="submit">Tìm kiếm đường đi</button>
+                    <button class="form-button" id="button-search" type="submit" >Tìm kiếm đường đi</button>
+                    <%
+                        String edgeString = (String) request.getAttribute("edgeString");
+                    %>
 
                 </form>
             </div>
             <div class="main-block" id="answer" >
-                <form method="post" class="form">
+                <form class="form">
             
-                    <h2 id="heading">Ðường đi ngắn nhất từ ${snode} đến ${fnode} theo thuật toán ${type}</h1>
-                    <div id="ans">Kết quả: ${ans}</div>
+                    <h2 id="heading">Ðường đi ngắn nhất ${snode} ${fnode} theo thuật toán ${type}</h1>
+                    <h3 id="ans">Kết quả: ${ans}</h3>
+                    <svg id="mySvg" style="width: 650px; height: 550px;"></svg>
+                    <script>
+                        displayResult('<%=edgeString%>');
+                    </script>
+
                 </form>
             </div>
         </div>
     </div>
                 
 </body>
-<script src="js/algorithm.js"></script>
 </html>
