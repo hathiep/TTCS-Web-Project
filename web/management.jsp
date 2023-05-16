@@ -22,8 +22,8 @@
         </div>
         <div class="home-body">
             <div class="home-menu">
-                <li class="menu-item"><a href="index.jsp">Trang chủ</a></li>
-                <li id="management" class="menu-item">Quản lý nhân viên
+                <li id="home" class="menu-item"><a href="index.jsp">Trang chủ</a></li>
+                <li class="management menu-item">Quản lý nhân viên
                     <ul class="sub-menu">
                         <li><a href="management">Thông tin nhân viên</a></li>
                         <li><a href="salary">Quản lý bảng lương</a></li>

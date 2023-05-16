@@ -22,7 +22,7 @@
     </div>
     <div class="home-body">
         <div class="home-menu">
-            <li class="menu-item"><a href="index.jsp">Trang chủ</a></li>
+            <li id="home" class="menu-item"><a href="index.jsp">Trang chủ</a></li>
             <li id="management" class="menu-item">Quản lý nhân viên
                 <ul class="sub-menu">
                     <li><a href="management">Thông tin nhân viên</a></li>
@@ -30,7 +30,7 @@
                 </ul>
             </li>
             <li id="algorithm" class="menu-item"><a href="algorithm.jsp">Thuật toán</a></li>
-            <li id="languageprocess" class="menu-item"><a href="languageprocess">Xử lý ngôn ngữ tự nhiên</a></li>
+            <li class="languageprocess menu-item"><a href="languageprocess">Xử lý ngôn ngữ tự nhiên</a></li>
         </div>
         <div class="home-main">
             <form method="post" action="" class="form">

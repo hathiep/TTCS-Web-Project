@@ -1,5 +1,7 @@
-#management {
-    background: blue;
+.management {
+    background: #1ac7b6;
+}
+.management a {
     color: #fff;
 }
 .time-block {

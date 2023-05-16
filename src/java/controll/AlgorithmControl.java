@@ -50,28 +50,30 @@ public class AlgorithmControl extends HttpServlet {
             BFSCoHuong bfs = new BFSCoHuong(n, m, start_node, finish_node, list_edge);
             request.setAttribute("type", "BFS có hướng");
             if(list_edge.contains(start_node+finish_node)) ans = start_node+" "+finish_node;
-            else ans = bfs.Solve(); k = 0;
+            else ans = bfs.Solve();
         }
         else if(type_algorithm[0].equals("1") && direction[0].equals("0")){
             BFSVoHuong bfs = new BFSVoHuong(n, m, start_node, finish_node, list_edge);
             request.setAttribute("type", "BFS vô hướng");
             if(list_edge.contains(start_node+finish_node) || list_edge.contains(finish_node+start_node)) ans = start_node+" "+finish_node;
-            else ans = bfs.Solve(); k = 0;
+            else ans = bfs.Solve();
         }
         else if(type_algorithm[0].equals("0") && direction[0].equals("1")){
             DFSCoHuong dfs = new DFSCoHuong(n, m, start_node, finish_node, list_edge);
             request.setAttribute("type", "DFS có hướng");
-            ans = dfs.Solve(); k = 0;
+            ans = dfs.Solve();
         }
         else if(type_algorithm[0].equals("0") && direction[0].equals("0")){
             DFSVoHuong dfs = new DFSVoHuong(n, m, start_node, finish_node, list_edge);
             request.setAttribute("type", "DFS vô hướng");
-            ans = dfs.Solve(); k = 0;
+            ans = dfs.Solve();
         }
         else{
             ans = "Không tìm được đường đi";
-            k = 1;
         }
+        
+        if(ans.equals("Không tìm được đường đi")) k = 1;
+        else k = 0;
         
         request.setAttribute("dir", direction[0]);
         request.setAttribute("snode", "từ " + start_node);

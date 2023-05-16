@@ -1,6 +1,8 @@
-#languageprocess {
+.languageprocess {
+    background: #1ac7b6;
+}
+.languageprocess a {
     color: #fff;
-    background: blue;
 }
 #heading {
     width: 100%;
@@ -98,12 +100,7 @@ table#header th#right-border {
     width: 100%;
     min-width: 300px;
     height: 100%;
-/*    margin: 3% 0 0 3%;
-    padding: 0.5%;*/
-/*    font-size: 60%;*/
     background: #fff;
-/*    border-radius: 10px;
-    box-shadow: 0 2px 19px 0 rgba(0, 0, 0, .25), 0 3px 20px 20px rgba(0, 0, 0, 0.02) !important;*/
     text-align: center;
     align-self: baseline;
 }

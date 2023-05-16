@@ -31,7 +31,7 @@
                     <li><a href="salary">Quản lý bảng lương</a></li>
                 </ul>
             </li>
-            <li id="algorithm" class="menu-item"><a href="algorithm.jsp">Thuật toán</a></li>
+            <li class="algorithm menu-item"><a href="algorithm.jsp">Thuật toán</a></li>
             <li id="languageprocess" class="menu-item"><a href="languageprocess">Xử lý ngôn ngữ tự nhiên</a></li>
         </div>
         <div class="home-main">
