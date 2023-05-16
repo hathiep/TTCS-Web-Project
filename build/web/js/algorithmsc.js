@@ -3,12 +3,12 @@ function getValue(id){
 }
 var list_edge = new Array();
 var list_node = new Array();
-var ok = false;
 function add_edge(e){
     event.preventDefault();
     
     var num_node = getValue('num_node');
     var num_edge = getValue('num_edge');
+    var direction = document.querySelectorAll('input[name="direction"]');
     var first_node = getValue('first_node');
     var last_node = getValue('last_node');
     var edge = first_node + last_node;
@@ -42,8 +42,14 @@ function add_edge(e){
             document.getElementById("list_edge").innerHTML = list_edge.join(", ");
             document.getElementById("list_input_edge").value = list_edge.join("");
             document.getElementById("list_split_edge").value = list_edge.join(" ");
-            drawGraph(list_edge.join(" "));
-            ok = true;
+            var dir;
+            for(var i = 0; i < direction.length; i++) {
+                if(direction[i].checked) {
+                    dir = direction[i].value;
+                    break;
+                }
+            }
+            drawGraph(list_edge.join(" "), dir);
         }
     }
 }
@@ -52,6 +58,7 @@ function delete_edge(e){
     
     var first_node = getValue('first_node');
     var last_node = getValue('last_node');
+    var direction = document.querySelectorAll('input[name="direction"]');
     var edge = first_node + last_node;
     var edge_reserve = last_node + first_node;
     
@@ -70,10 +77,17 @@ function delete_edge(e){
     else{
         list_edge.splice(list_edge.indexOf(edge), 1);
         document.getElementById("list_edge").innerHTML = list_edge.join(", ");
-        drawGraph(list_edge.join(" "));
+        var dir;
+        for(var i = 0; i < direction.length; i++) {
+            if(direction[i].checked) {
+                dir = direction[i].value;
+                break;
+            }
+        }
+        drawGraph(list_edge.join(" "), dir);
     }
 }
-function displayResult(listEdge, pathString) {
+function displayResult(listEdge, pathString, dir) {
 
     if(listEdge.trim().length < 5) return;
     
@@ -108,20 +122,22 @@ function displayResult(listEdge, pathString) {
     .force('link', d3.forceLink(edges).id(d => d.id).distance(100).strength(1))
     .force('charge', d3.forceManyBody().strength(10))
     .force('center', d3.forceCenter(width / 2, height / 2))
-    .force('collision', d3.forceCollide().radius(50));
+    .force('collision', d3.forceCollide().radius(60));
 
-    const arrowhead = svg.append('marker')
-    .attr('id', 'arrowhead')
-    .attr('viewBox', '-10 -10 20 20')
-    .attr('refX', 22)
-    .attr('refY', 0)
-    .attr('markerWidth', 10)
-    .attr('markerHeight', 10)
-    .attr('orient', 'auto')
-    .append('path')
-    .attr('d', 'M -12,-5 L 0,0 L -12,5')
-    .attr('stroke', '#333')
-    .attr('fill', '#333');
+    if(dir == "1"){
+        const arrowhead = svg.append('marker')
+        .attr('id', 'arrowhead')
+        .attr('viewBox', '-10 -10 20 20')
+        .attr('refX', 16)
+        .attr('refY', 0)
+        .attr('markerWidth', 10)
+        .attr('markerHeight', 10)
+        .attr('orient', 'auto')
+        .append('path')
+        .attr('d', 'M -12,-5 L 0,0 L -12,5')
+        .attr('stroke', '#333')
+        .attr('fill', '#333');
+    }
 
     const link = svg.append('g')
     .attr('stroke', '#999')
@@ -129,7 +145,7 @@ function displayResult(listEdge, pathString) {
     .selectAll('line')
     .data(edges)
     .join('line')
-    .attr('stroke-width', 2)
+    .attr('stroke-width', 3)
     .attr('stroke', '#333')
     .attr('marker-end', 'url(#arrowhead)');
 
@@ -201,7 +217,7 @@ function displayResult(listEdge, pathString) {
         }
         pathEdge2.push(pathFinish[0]);
 
-        const pathColor = 'green';
+        const pathColor = '#22ff00';
         const startColor = 'yellow';
         const vertexColor = '#22ff00';
         const finishColor = '#00ffff';
@@ -284,7 +300,7 @@ function displayResult(listEdge, pathString) {
             .on('end', dragended);
     }
 }
-function drawGraph(listEdge) {
+function drawGraph(listEdge, dir) {
     
     document.getElementById('mySvg').innerHTML = '';
     
@@ -317,20 +333,22 @@ function drawGraph(listEdge) {
     .force('link', d3.forceLink(edges).id(d => d.id).distance(100).strength(1))
     .force('charge', d3.forceManyBody().strength(10))
     .force('center', d3.forceCenter(width / 2, height / 2))
-    .force('collision', d3.forceCollide().radius(50));
+    .force('collision', d3.forceCollide().radius(60));
 
-    const arrowhead = svg.append('marker')
-    .attr('id', 'arrowhead')
-    .attr('viewBox', '-10 -10 20 20')
-    .attr('refX', 22)
-    .attr('refY', 0)
-    .attr('markerWidth', 10)
-    .attr('markerHeight', 10)
-    .attr('orient', 'auto')
-    .append('path')
-    .attr('d', 'M -12,-5 L 0,0 L -12,5')
-    .attr('stroke', '#333')
-    .attr('fill', '#333');
+    if(dir == 1){
+        const arrowhead = svg.append('marker')
+        .attr('id', 'arrowhead')
+        .attr('viewBox', '-10 -10 20 20')
+        .attr('refX', 16)
+        .attr('refY', 0)
+        .attr('markerWidth', 10)
+        .attr('markerHeight', 10)
+        .attr('orient', 'auto')
+        .append('path')
+        .attr('d', 'M -12,-5 L 0,0 L -12,5')
+        .attr('stroke', '#333')
+        .attr('fill', '#333');
+    }
 
     const link = svg.append('g')
     .attr('stroke', '#999')
@@ -338,7 +356,7 @@ function drawGraph(listEdge) {
     .selectAll('line')
     .data(edges)
     .join('line')
-    .attr('stroke-width', 2)
+    .attr('stroke-width', 3)
     .attr('stroke', '#333')
     .attr('marker-end', 'url(#arrowhead)');
     

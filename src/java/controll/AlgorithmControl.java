@@ -72,6 +72,8 @@ public class AlgorithmControl extends HttpServlet {
             ans = "Không tìm được đường đi";
             k = 1;
         }
+        
+        request.setAttribute("dir", direction[0]);
         request.setAttribute("snode", "từ " + start_node);
         request.setAttribute("fnode", "đến " + finish_node);
         request.setAttribute("edgeString", edgeString);

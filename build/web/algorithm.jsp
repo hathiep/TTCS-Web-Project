@@ -170,6 +170,7 @@
                     <%
                         String edgeString = (String) request.getAttribute("edgeString");
                         String pathString = (String) request.getAttribute("pathString");
+                        String dir = (String) request.getAttribute("dir");
                     %>
 
                 </form>
@@ -181,7 +182,7 @@
                     <h3 id="ans">Kết quả: ${ans}</h3>
                     <svg id="mySvg" style="width: 650px; height: 550px;"></svg>
                     <script>
-                        displayResult('<%=edgeString%>', '<%=pathString%>');
+                        displayResult('<%=edgeString%>', '<%=pathString%>', '<%=dir%>');
                     </script>
 
                 </form>
