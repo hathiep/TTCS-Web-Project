@@ -53,9 +53,20 @@ public class UpdateServlet extends HttpServlet {
         String chucvu = request.getParameter("chucvu");
         int mucluong = Integer.parseInt(request.getParameter("mucluong"));
         String chuthich = request.getParameter("chuthich");
-        
+        String swork = request.getParameter("work");
+        int work;
+        if(swork == null) work = 2;
+        else work = Integer.parseInt(swork);
         NVDAO dao = new NVDAO();
-        List<NV> list = dao.getAllNV(2);
+        List<NV> list = dao.getAllNV(work);
+        
+        String s = "";
+        if(work == 2) s = "Tất cả nhân viên";
+        if(work == 1) s = "Nhân viên hiện tại";
+        if(work == 0) s = "Nhân viên đã nghỉ việc";
+        request.setAttribute("work", "" + work);
+        request.setAttribute("listNV", list);
+        request.setAttribute("header_table", s);
         
         String imageUrl = "";
 
@@ -97,17 +108,17 @@ public class UpdateServlet extends HttpServlet {
 
         if(hoten.split("\\s+").length<2){
             request.setAttribute("error", "Vui lòng điền đầy đủ họ và tên!");
-            request.getRequestDispatcher("management").forward(request, response);
+            request.getRequestDispatcher("management.jsp").forward(request, response);
         }
         else{
             for(NV i:list){
                 if(id == i.getId()){
                     dao.updateNV(id, hoten, ngaysinh, gioitinh, sdt, diachi, ngaynhanviec, chucvu, mucluong, chuthich, imageUrl);
-                    request.getRequestDispatcher("management").forward(request, response);
+                    request.getRequestDispatcher("management.jsp").forward(request, response);
                 }
             }
             request.setAttribute("error", "Id không đúng!");
-            request.getRequestDispatcher("management").forward(request, response);
+            request.getRequestDispatcher("management.jsp").forward(request, response);
         }
     }
     // Phương thức lấy tên file từ Part

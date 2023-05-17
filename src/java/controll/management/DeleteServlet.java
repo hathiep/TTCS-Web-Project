@@ -40,21 +40,32 @@ public class DeleteServlet extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         int id = Integer.parseInt(request.getParameter("id"));
+        String swork = request.getParameter("work");
+        int work;
+        if(swork == null) work = 2;
+        else work = Integer.parseInt(swork);
         NVDAO dao = new NVDAO();
-        List<NV> list = dao.getAllNV(2);
+        List<NV> list = dao.getAllNV(work);
         
+        String s = "";
+        if(work == 2) s = "Tất cả nhân viên";
+        if(work == 1) s = "Nhân viên hiện tại";
+        if(work == 0) s = "Nhân viên đã nghỉ việc";
+        request.setAttribute("work", "" + work);
+        request.setAttribute("listNV", list);
+        request.setAttribute("header_table", s);
         
         int ok = 0;
         for(NV i:list){
             if(id == i.getId()){
                 dao.deleteNV(id);
                 ok = 1;
-                response.sendRedirect("management");
+                response.sendRedirect("management.jsp");
             }
         }
         if(ok==0){
             request.setAttribute("error", "Id không đúng!");
-            request.getRequestDispatcher("management").forward(request, response);
+            request.getRequestDispatcher("management.jsp").forward(request, response);
         }
             
     } 

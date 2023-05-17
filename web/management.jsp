@@ -218,13 +218,13 @@
 
                         <div id="form-right" class="form-block">
                             <div id="item-add2" class="form-item2">
-                                <button class="form-button" id="button-add" type="submit" formaction="add">Thêm</button>
+                                <button class="form-button" id="button-add" type="submit" formaction="add?work=${work}">Thêm</button>
                             </div>
                             <div id="item-update" class="form-item2">
-                                <button class="form-button" id="button-update" type="submit" formaction="update">Sửa</button>
+                                <button class="form-button" id="button-update" type="submit" formaction="update?work=${work}">Sửa</button>
                             </div>
                             <div id="item-delete" class="form-item2">
-                                <button class="form-button" id="button-delete" type="submit" formaction="delete">Xoá</button>
+                                <button class="form-button" id="button-delete" type="submit" formaction="delete?work=${work}">Xoá</button>
                             </div>
                             <div id="item-reset" class="form-item2">
                                 <button class="form-button" id="button-reset" type="reset" action="resetForm()">Reset</button>

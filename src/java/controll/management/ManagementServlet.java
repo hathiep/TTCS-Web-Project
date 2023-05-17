@@ -45,6 +45,7 @@ public class ManagementServlet extends HttpServlet {
         if(work == 2) s = "Tất cả nhân viên";
         if(work == 1) s = "Nhân viên hiện tại";
         if(work == 0) s = "Nhân viên đã nghỉ việc";
+        request.setAttribute("work", "" + work);
         request.setAttribute("listNV", list);
         request.setAttribute("header_table", s);
         request.getRequestDispatcher("management.jsp").forward(request, response);
