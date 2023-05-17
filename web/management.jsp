@@ -22,27 +22,35 @@
         </div>
         <div class="home-body">
             <div class="home-menu">
-                <li id="home" class="menu-item"><a href="index.jsp">Trang chủ</a></li>
+                <a id="home" class="menu-item" href="index.jsp">Trang chủ</a>
                 <li class="management menu-item">Quản lý nhân viên
                     <ul class="sub-menu">
                         <li><a href="management">Thông tin nhân viên</a></li>
                         <li><a href="salary">Quản lý bảng lương</a></li>
                     </ul>
                 </li>
-                <li id="algorithm" class="menu-item"><a href="algorithm.jsp">Thuật toán</a></li>
-                <li id="languageprocess" class="menu-item"><a href="languageprocess">Xử lý ngôn ngữ tự nhiên</a></li>
+                <a id="algorithm" class="menu-item" href="algorithm.jsp">Thuật toán</a>
+                <a id="languageprocess" class="menu-item" href="languageprocess">Xử lý ngôn ngữ tự nhiên</a>
             </div>
             <div class="home-main">
                 
                 <div id="block-work">
-                        <a id="link-all-nv" class="menu-work menu-item" href="management?work=2">Tất cả nhân viên</a>
-                        <a id="link-current-nv" class="menu-work menu-item" href="management?work=1">Nhân viên hiện tại</a>
-                        <a id="link-retired-nv" class="menu-work menu-item" href="management?work=0">Nhân viên đã nghỉ việc</a>
-                    </div>
+                    <a id="link-all-nv" class="menu-work menu-item" href="management?work=2">Tất cả nhân viên</a>
+                    <a id="link-current-nv" class="menu-work menu-item" href="management?work=1">Nhân viên hiện tại</a>
+                    <a id="link-retired-nv" class="menu-work menu-item" href="management?work=0">Nhân viên đã nghỉ việc</a>
+                    
+                    <%
+                        String id_link = (String) request.getAttribute("header_table");
+                    %>
+                    
+                    <script>
+                        hideDiv('<%=id_link%>');
+                    </script>
+                </div>
                     
                 <div id="block-table" class="main-block">
                                         
-                    <h2 class="heading"> Bảng thông tin ${header_table} </h2>
+                    <h2 class="heading"> Bảng thông tin <%=id_link%> </h2>
                     
                     <div id="box">
                         <table id="tbl-content" cellpadding="3" cellspacing="0" border="0">
@@ -112,7 +120,7 @@
                             <div class="form-item3">
                                 
                                 <a id="link-image" style="width:100%;" src="#" target="_blank">
-                                    <img id="preview" src="#" alt="" style="display: block;"/>
+                                    <img id="preview" src="https://i.pinimg.com/736x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg" alt="" style="display: block;"/>
                                 </a>
                                 <input id="image" type="file" name="image"/>
                                 <label id="suggest" for="image">Chọn ảnh</label>
@@ -209,16 +217,16 @@
                         </div>
 
                         <div id="form-right" class="form-block">
-                            <div class="form-item2">
+                            <div id="item-add2" class="form-item2">
                                 <button class="form-button" id="button-add" type="submit" formaction="add">Thêm</button>
                             </div>
-                            <div class="form-item2">
+                            <div id="item-update" class="form-item2">
                                 <button class="form-button" id="button-update" type="submit" formaction="update">Sửa</button>
                             </div>
-                            <div class="form-item2">
+                            <div id="item-delete" class="form-item2">
                                 <button class="form-button" id="button-delete" type="submit" formaction="delete">Xoá</button>
                             </div>
-                            <div class="form-item2">
+                            <div id="item-reset" class="form-item2">
                                 <button class="form-button" id="button-reset" type="reset" action="resetForm()">Reset</button>
                             </div>
                         </div>

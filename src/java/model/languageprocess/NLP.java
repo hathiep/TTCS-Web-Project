@@ -5,7 +5,10 @@
 package model.languageprocess;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.StringTokenizer;
+import java.util.TreeSet;
 
 /**
  *
@@ -13,7 +16,8 @@ import java.util.StringTokenizer;
  */
 public class NLP {
     private String sentence;
-    private ArrayList<String> list = new ArrayList<>();;
+    private ArrayList<String> list = new ArrayList<>();
+    private TreeSet<String> set = new TreeSet<>();
 
     public NLP() {
     }
@@ -29,6 +33,26 @@ public class NLP {
             list.add(t);
         }
         return list;
+    }
+    
+    public HashMap<String, Integer> getMap() {
+        
+        HashMap<String, Integer> map = new LinkedHashMap<>();
+        
+        ArrayList<String> list2 = new ArrayList<>();
+        for(String i : list){
+            list2.add(i.toLowerCase());
+        }
+
+        for (String word : list2) {
+            if (map.containsKey(word)) {
+                map.put(word, map.get(word) + 1);
+            } else {
+                map.put(word, 1);
+            }
+        }
+
+        return map;
     }
 
     

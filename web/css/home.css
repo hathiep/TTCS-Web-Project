@@ -1,7 +1,5 @@
-.home{
+.home {
     background: #1ac7b6;
-}
-.home a {
     color: #fff;
 }
 /*main*/
@@ -9,7 +7,7 @@
 .form {
     width: 98%;
     min-width: 1200px;
-    min-height: 700px;
+    height: 630px;
     margin: 1% 0 0 1%;
     padding: 1%;
     background: #fff;
@@ -19,24 +17,90 @@
     align-self: baseline;
 }
 .form-block {
-    margin: 1.5%;
+    margin: 1%;
     padding: 10px 5px;
     border-radius: 10px;
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .25), 0 3px 10px 10px rgba(0, 0, 0, 0.02) !important;
 }
 #block-left {
     width: 30%;
+    height: 96%;
+    padding: 2%;
     float: left;
 }
 #block-right {
-    width: 62%;
+    width: 64%;
+    height: 96%;
+    background-color: #f9f9f9;
     float: left;
 }
 #image {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
+    padding: 2px;
+    margin: 15px 0 25px 0;
     object-fit: cover;
     object-position: top;
     border-radius: 50%;
     box-shadow: 0 10px 10px 0 rgba(0, 0, 0, .25), 0 3px 20px 20px rgba(0, 0, 0, 0.02) !important;
+}
+.heading {
+    margin: 2% 0 5% 0;
+    font-size: 1.6rem;
+}
+.form-item1 {
+    width: 95%;
+    height: 40px;
+    display: flex;
+    border-bottom: solid 1px #bbb;
+}
+.form-item2{
+    height: 50px;
+    border-bottom: none;
+    display: flex;
+}
+.form-item3 {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    float: left;
+}
+.form-label{
+    font-weight: 700;
+    font-size: 1.2rem;
+    font-family: courier;
+    line-height: 1.4rem;
+    align-self: center;
+    position: absolute;
+}
+.form-info {
+    width: 50%;
+    height: 30px;
+    margin-left: 50%;
+    padding: 8px 10px;
+    font-size: 1.2rem;
+    font-family: courier;
+    font-weight: 500;
+    text-align: left;
+    justify-content: right;
+}
+.item{
+    width: 90%;
+    height: 60px;
+    margin: 3% 5%; 
+    padding: 1.5% 4%;
+    background: #fff;
+    color: #000;
+    font-size: 1.4rem;
+    font-family: courier;
+    font-weight: 800;
+    text-align: left;
+    align-self: center;
+    border-radius: 30px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .25), 0 3px 20px 20px rgba(0, 0, 0, 0.02) !important;
+}
+.item2 {
+    width: 80%;
+    margin-left: 15%;
 }

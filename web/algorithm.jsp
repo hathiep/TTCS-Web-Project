@@ -24,21 +24,21 @@
     </div>
     <div class="home-body">
         <div class="home-menu">
-            <li class="menu-item"><a href="index.jsp">Trang chủ</a></li>
+            <a class="menu-item" href="index.jsp">Trang chủ</a></li>
             <li id="management" class="menu-item">Quản lý nhân viên
                 <ul class="sub-menu">
                     <li><a href="management">Thông tin nhân viên</a></li>
                     <li><a href="salary">Quản lý bảng lương</a></li>
                 </ul>
             </li>
-            <li class="algorithm menu-item"><a href="algorithm.jsp">Thuật toán</a></li>
-            <li id="languageprocess" class="menu-item"><a href="languageprocess">Xử lý ngôn ngữ tự nhiên</a></li>
+            <a class="algorithm menu-item" href="algorithm.jsp">Thuật toán</a>
+            <a id="languageprocess" class="menu-item" href="languageprocess">Xử lý ngôn ngữ tự nhiên</a>
         </div>
         <div class="home-main">
             <div class="main-block" id="request">
                 <form class="form" method="post" action="algorithmcontrol">
             
-                    <h2 id="heading">Thuật toán tìm kiếm đường đi ngắn nhất</h1>
+                    <h2 id="heading">Thuật toán tìm kiếm đường đi trên đồ thị</h1>
 
                     <div id="form-top" class="form-block">
                         
@@ -178,7 +178,7 @@
             <div class="main-block" id="answer" >
                 <form class="form">
             
-                    <h2 id="heading">Ðường đi ngắn nhất ${snode} ${fnode} theo thuật toán ${type}</h1>
+                    <h2 id="heading">Ðường đi trên đồ thị ${snode} ${fnode} theo thuật toán ${type}</h1>
                     <h3 id="ans">Kết quả: ${ans}</h3>
                     <svg id="mySvg" style="width: 650px; height: 550px;"></svg>
                     <script>

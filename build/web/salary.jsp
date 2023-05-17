@@ -22,15 +22,15 @@
         </div>
         <div class="home-body">
             <div class="home-menu">
-                <li id="home" lass="menu-item"><a href="index.jsp">Trang chủ</a></li>
-                <li id="management" class="management menu-item">Quản lý nhân viên
+                <a id="home" class="menu-item" href="index.jsp">Trang chủ</a>
+                <li class="management menu-item">Quản lý nhân viên
                     <ul class="sub-menu">
                         <li><a href="management">Thông tin nhân viên</a></li>
                         <li><a href="salary">Quản lý bảng lương</a></li>
                     </ul>
                 </li>
-                <li id="algorithm" class="menu-item"><a href="algorithm.jsp">Thuật toán</a></li>
-                <li id="languageprocess" class="menu-item"><a href="languageprocess">Xử lý ngôn ngữ tự nhiên</a></li>
+                <a id="algorithm" class="menu-item" href="algorithm.jsp">Thuật toán</a>
+                <a id="languageprocess" class="menu-item" href="languageprocess">Xử lý ngôn ngữ tự nhiên</a>
             </div>
             <div class="home-main">
                 
@@ -225,7 +225,6 @@
 
                         <div id="form-right" class="form-block">
                             <div class="form-item2">
-<!--                                <a class="form-button" id="button-update" href="" >Sửa</a>-->
                                 <button class="form-button" id="button-update" type="submit" formaction="updatesalary">Sửa</button>
                             </div>
                             <div class="form-item2">

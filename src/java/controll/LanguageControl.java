@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import model.languageprocess.NLP;
 
 /**
@@ -33,14 +35,18 @@ public class LanguageControl extends HttpServlet {
     throws ServletException, IOException {
         String sentence = request.getParameter("sentence");
         ArrayList<String> list = new ArrayList<>();
+        HashMap<String, Integer> map = new LinkedHashMap<>();
         if(sentence!=null){
             NLP nlp = new NLP(sentence);
             list = nlp.getList();
+            map = nlp.getMap();
         }
         else{
             list.add("");
+            map.put("", 0);
         }
         request.setAttribute("listWord", list);
+        request.setAttribute("mapWord", map);
         request.getRequestDispatcher("languageprocess.jsp").forward(request, response);
     } 
 

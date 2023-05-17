@@ -20,15 +20,11 @@ function insert(id){
             document.getElementById('chuthich').value = table[i].cells[10].innerText;
             document.getElementById("block-infor").style.display = "block";
             document.getElementById('preview').src = table[i].cells[11].innerText;
+            hideDiv();
         }
     }
 
 }
-document.addEventListener("click", function(event) {
-  if (!table.contains(event.target)) {
-    div.style.display = "none";
-  }
-});
 
 function makeSortable() {
     const table = document.querySelector('#tbl-content');
@@ -94,3 +90,15 @@ $(document).ready(function() {
   });
 });
 
+function hideDiv(id_link) {
+  if (id_link === "0") {
+    document.getElementById('item-add2').hidden = true;
+    document.getElementById('item-delete').hidden = true;
+  } else if (id_link === "1") {
+    document.getElementById('item-add2').hidden = false;
+    document.getElementById('item-delete').hidden = false;
+  } else if (id_link === "2") {
+    document.getElementById('item-add2').hidden = false;
+    document.getElementById('item-delete').hidden = true;
+  }
+}
