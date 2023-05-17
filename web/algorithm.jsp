@@ -45,16 +45,16 @@
                         <div class="form-item2">
                             <label class="form-label" for="type_algorithm">Thuật toán</label>
                             <div id="radio1" class="form-radio">
-                                <input type="radio" name="type_algorithm" value="1" checked> BFS<br>
-                                <input type="radio" name="type_algorithm" value="0" > DFS</br>
+                                <input id="option_type1" type="radio" name="type_algorithm" value="0" > BFS<br>
+                                <input id="option_type2" type="radio" name="type_algorithm" value="1" > DFS</br>
                             </div>
                         </div>
                     
                         <div class="form-item2" class="form-item1">
                             <label class="form-label" id="form-label-top" for="direction">Chiều</label>
                             <div id="radio2" class="form-radio">
-                                <input type="radio" name="direction" value="1" checked> Có hướng<br>
-                                <input type="radio" name="direction" value="0" > Vô hướng</br>
+                                <input id="option_direc1" type="radio" name="direction" value="0" > Có hướng<br>
+                                <input id="option_direc2" type="radio" name="direction" value="1" > Vô hướng</br>
                             </div>
                         </div>
                         
@@ -64,17 +64,17 @@
                         
                         <div class="form-item1">
                             <label class="form-label" for="num_node" required>Số đỉnh</label>
-                            <input class="form-input" id="num_node" name="num_node" type="number" min="2" placeholder="0"/>
+                            <input class="form-input" id="num_node" name="num_node" type="number" min="2" value="${num_node}" placeholder="0"/>
                         </div>
 
                         <div class="form-item1">
                             <label class="form-label" for="num_edge">Số cạnh</label>
-                            <input class="form-input" id="num_edge" name="num_edge" type="number" min="1" placeholder="0"/>
+                            <input class="form-input" id="num_edge" name="num_edge" type="number" min="1" value="${num_edge}" placeholder="0"/>
                         </div>
 
                         <div class="form-item1">
                             <label class="form-label" for="start_node">Bắt đầu</label>
-                            <select class="form-option" name="start_node" id="start_node">
+                            <select class="form-option" name="start_node" id="start_node" value="${start_node}">
                                 <option value="A">A</option> <option value="B">B</option>
                                 <option value="C">C</option> <option value="D">D</option>
                                 <option value="E">E</option> <option value="F">F</option>
@@ -93,7 +93,7 @@
 
                         <div class="form-item1">
                             <label class="form-label" for="finish_node">Kết thúc</label>
-                            <select class="form-option" name="finish_node" id="finish_node">
+                            <select class="form-option" name="finish_node" id="finish_node" value="${finish_node}">
                                 <option value="A">A</option> <option value="B">B</option>
                                 <option value="C">C</option> <option value="D">D</option>
                                 <option value="E">E</option> <option value="F">F</option>
@@ -109,7 +109,22 @@
                                 <option value="Y">Y</option> <option value="X">Z</option>
                             </select>
                         </div>
+                                
+                        <%
+                            String type_algo = (String) request.getAttribute("type_algo");
+                            if(type_algo == null) type_algo = "0";
+                            String direc_algo = (String) request.getAttribute("direc_algo");
+                            if(direc_algo == null) direc_algo = "0";
+                            String start_node = (String) request.getAttribute("start_node");
+                            if(start_node == null) start_node = "A";
+                            String finish_node = (String) request.getAttribute("finish_node");
+                            if(finish_node == null) finish_node = "A";
+                            
+                        %>
                         
+                        <script>
+                            displayInput('<%=start_node%>','<%=finish_node%>', '<%=type_algo%>', '<%=direc_algo%>')
+                        </script>
 
                     </div>
 
@@ -161,7 +176,7 @@
                     <div id="form-bottom" class="form-block">
                         
                         <div class="form-label" id="label-bottom" >Danh sách cạnh:</div><br>
-                        <div id="list_edge"></div>
+                        <div id="list_edge">${list_edge}</div>
                         <input class="form-input" id="list_input_edge" name="list_input_edge" hidden="true" type="text"/>
                         <input class="form-input" id="list_split_edge" name="list_split_edge" hidden="true" type="text"/>
                     </div>
@@ -179,7 +194,7 @@
                 <form class="form">
             
                     <h2 id="heading">Ðường đi trên đồ thị ${snode} ${fnode} theo thuật toán ${type}</h1>
-                    <h3 id="ans">Kết quả: ${ans}</h3>
+                    <h2 class="ans">${ans}</h2>
                     <svg id="mySvg" style="width: 650px; height: 550px;"></svg>
                     <script>
                         displayResult('<%=edgeString%>', '<%=pathString%>', '<%=dir%>');

@@ -87,6 +87,36 @@ function delete_edge(e){
         drawGraph(list_edge.join(" "), dir);
     }
 }
+
+function displayInput(start_node, finish_node, type_algo, direc_algo){
+
+    var select_start_node = document.getElementById('start_node');
+    var select_finish_node = document.getElementById('finish_node');
+    if(type_algo == "0"){
+        document.getElementById('option_type1').checked = 'true';
+    }
+    else{
+        document.getElementById('option_type2').checked = 'true';
+    }
+    if(direc_algo == "0"){
+        document.getElementById('option_direc1').checked = 'true';
+    }
+    else{
+        document.getElementById('option_direc2').checked = 'true';
+    }
+    select_start_node.value = start_node;
+    select_finish_node.value = finish_node;
+    var all_node = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for(var i=1; i<=26; i++){
+        if(all_node[i]==start_node[0]){
+            select_start_node.options[i].selected = true;
+        }
+        if(all_node[i]==finish_node[0]){
+            select_finish_node.options[i].selected = true;
+        }
+    }
+}
+
 function displayResult(listEdge, pathString, dir) {
 
     if(listEdge.trim().length < 5) return;
