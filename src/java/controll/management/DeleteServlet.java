@@ -56,16 +56,17 @@ public class DeleteServlet extends HttpServlet {
         request.setAttribute("header_table", s);
         
         int ok = 0;
-        for(NV i:list){
+        List<NV> list2 = dao.getAllNV(2);
+        for(NV i:list2){
             if(id == i.getId()){
                 dao.deleteNV(id);
                 ok = 1;
-                response.sendRedirect("management.jsp");
+                response.sendRedirect("management");
             }
         }
         if(ok==0){
             request.setAttribute("error", "Id không đúng!");
-            request.getRequestDispatcher("management.jsp").forward(request, response);
+            request.getRequestDispatcher("management").forward(request, response);
         }
             
     } 

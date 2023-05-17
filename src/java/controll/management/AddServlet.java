@@ -100,19 +100,21 @@ public class AddServlet extends HttpServlet {
             imageUrl = "images/" + fileName;
         }
         
-        for(NV i:list){
+        List<NV> list2 = dao.getAllNV(2);
+        
+        for(NV i:list2){
             if(i.getId()==id){
                 request.setAttribute("error", "Id đã tồn tại trong danh sách!");
-                request.getRequestDispatcher("management.jsp").forward(request, response);
+                request.getRequestDispatcher("management").forward(request, response);
             }
         }
         if(hoten.split("\\s+").length<2){
             request.setAttribute("error", "Vui lòng điền đầy đủ họ và tên!");
-            request.getRequestDispatcher("management.jsp").forward(request, response);
+            request.getRequestDispatcher("management").forward(request, response);
         }
         else{
             dao.addNV(id, hoten, ngaysinh, gioitinh, sdt, diachi, ngaynhanviec, chucvu, mucluong, chuthich, imageUrl);
-            response.sendRedirect("management.jsp");
+            response.sendRedirect("management");
         }
     }
     // Phương thức lấy tên file từ Part

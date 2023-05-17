@@ -68,6 +68,8 @@ public class UpdateServlet extends HttpServlet {
         request.setAttribute("listNV", list);
         request.setAttribute("header_table", s);
         
+        List<NV> list2 = dao.getAllNV(2);
+        
         String imageUrl = "";
 
         String savePath = getServletContext().getRealPath("/") + "images/";
@@ -80,8 +82,9 @@ public class UpdateServlet extends HttpServlet {
 
         // Lấy tệp ảnh từ yêu cầu POST
         Part filePart = request.getPart("image");
-        if (filePart != null) {
-            String fileName = getFileName(filePart);
+        
+        String fileName = getFileName(filePart);
+        if (filePart != null && filePart.getSize() > 0) {
             // Lưu ảnh vào thư mục lưu trữ
             OutputStream out = new FileOutputStream(new File(savePath + File.separator + fileName));
             InputStream fileContent = filePart.getInputStream();
@@ -99,7 +102,7 @@ public class UpdateServlet extends HttpServlet {
             imageUrl = "images/" + fileName;
         }
         else{
-            for(NV i : list){
+            for(NV i : list2){
                 if(i.getId() == id){
                     imageUrl = i.getImage();
                 }
@@ -108,17 +111,17 @@ public class UpdateServlet extends HttpServlet {
 
         if(hoten.split("\\s+").length<2){
             request.setAttribute("error", "Vui lòng điền đầy đủ họ và tên!");
-            request.getRequestDispatcher("management.jsp").forward(request, response);
+            request.getRequestDispatcher("management").forward(request, response);
         }
         else{
-            for(NV i:list){
+            for(NV i:list2){
                 if(id == i.getId()){
                     dao.updateNV(id, hoten, ngaysinh, gioitinh, sdt, diachi, ngaynhanviec, chucvu, mucluong, chuthich, imageUrl);
-                    request.getRequestDispatcher("management.jsp").forward(request, response);
+                    request.getRequestDispatcher("management").forward(request, response);
                 }
             }
             request.setAttribute("error", "Id không đúng!");
-            request.getRequestDispatcher("management.jsp").forward(request, response);
+            request.getRequestDispatcher("management").forward(request, response);
         }
     }
     // Phương thức lấy tên file từ Part
