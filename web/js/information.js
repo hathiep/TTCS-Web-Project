@@ -74,22 +74,6 @@ function hideerror(){
     document.getElementById('error').innerHTML = "";
 }
 
-$(document).ready(function() {
-  // Tìm mục menu hiện tại dựa trên URL
-  var currentMenuItem = $('.menu a[href="' + window.location.pathname + '"]').parent();
-
-  // Thêm lớp active vào mục menu hiện tại
-  currentMenuItem.addClass('active');
-
-  // Bắt sự kiện click vào mục menu
-  $('.menu-item a').click(function() {
-    // Loại bỏ lớp active khỏi tất cả các mục menu
-    $('.menu-item a').removeClass('active');
-    // Thêm lớp active vào mục menu được chọn
-    $(this).addClass('active');
-  });
-});
-
 function hideDiv(id_link) {
   if (id_link === "0") {
     document.getElementById('item-add2').hidden = true;

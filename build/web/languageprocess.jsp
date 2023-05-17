@@ -38,7 +38,7 @@
                 
                 <div id="block1" class="main-block">
                     <h2 class="heading">Tách từ trong câu</h1><br>
-                    <textarea class="form-input" id="sentence" name="sentence" placeholder="Nhập câu cần tách" required></textarea>
+                    <textarea class="form-input" id="sentence" name="sentence" placeholder="Nhập câu cần tách" required>${sentence}</textarea>
                     <button class="form-button" id="button-split" type="submit" formaction="languageprocess">Tách</button>
                 </div>
 
@@ -46,7 +46,7 @@
                     <h2 class="heading">Danh sách từ trong câu</h1><br>
                     <div id="all-table">
                         <div id="block-table1" class="block-table">
-                            <table id="table1" class="table-word" cellpadding="3" cellspacing="0" border="0">
+                            <table id="table1" cellpadding="3" cellspacing="0" border="0">
 
                                 <thead>
                                     <tr>
@@ -58,17 +58,17 @@
                                 <tbody>
 
                             <%
-                                ArrayList<String> list = (ArrayList<String>)request.getAttribute("listWord");
-                                if(list.size()!=0){
+                                ArrayList<String> listWord = (ArrayList<String>)request.getAttribute("listWord");
+                                if(listWord.size()!=0){
                                     int stt = 0;
-                                    for(String i:list){
+                                    for(String word : listWord){
                                         stt++;
-                                        if(i=="") break;
+                                        if(word=="") break;
                                     
                             %>
-                                        <tr class="row">
+                                        <tr>
                                             <td class="col0"><%=stt%></td>
-                                            <td class="col"><%=i%></td>
+                                            <td class="col"><%=word%></td>
                                         </tr>
                             <%
                                     }
@@ -79,7 +79,7 @@
                         </div>  
 
                         <div id="block-table2" class="block-table">
-                            <table id="table2" class="table-word" cellpadding="3" cellspacing="0" border="0">
+                            <table id="table2" cellpadding="3" cellspacing="0" border="0">
 
                                 <thead>
                                     <tr>
@@ -91,18 +91,18 @@
                                 <tbody>
 
                             <%
-                                HashMap<String, Integer> map = (HashMap<String, Integer>)request.getAttribute("mapWord");
-                                if(map.size()!=0){
-                                    int t = 0;
-                                    for (String word : map.keySet()) {
-                                        int count = map.get(word);
-                                        if(count==0) break;
-                                        t++;
+                                HashMap<String, Integer> mapWord = (HashMap<String, Integer>)request.getAttribute("mapWord");
+                                if(mapWord.size()!=0){
+                                    int stt2 = 0;
+                                    for (String word : mapWord.keySet()) {
+                                        int count2 = mapWord.get(word);
+                                        if(count2==0) break;
+                                        stt2++;
                             %>
-                                        <tr class="row">
-                                            <td class="col2"><%=t%></td>
+                                        <tr>
+                                            <td class="col2"><%=stt2%></td>
                                             <td class="col1"><%=word%></td>
-                                            <td class="right col2"><%=count%></td>
+                                            <td class="right col2"><%=count2%></td>
                                         </tr>
                             <%
                                     }

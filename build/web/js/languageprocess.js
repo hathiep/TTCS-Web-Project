@@ -1,4 +1,26 @@
-function makeSortable() {
+function makeSortable1() {
+    const table = document.querySelector('#table1');
+    const headers = table.querySelectorAll('.table-header');
+
+    headers.forEach((header, index) => {
+        header.addEventListener('click', () => {
+          // Xác định thứ tự sắp xếp và cột được chọn
+            const isAscending = header.classList.contains('asc');
+            const columnIndex = index;
+
+            // Sắp xếp bảng
+            sortTableByColumn(table, columnIndex, isAscending);
+
+            // Đổi thứ tự sắp xếp và cập nhật lớp CSS trên tiêu đề cột
+            headers.forEach((h) => {
+                h.classList.remove('asc', 'desc');
+            });
+            header.classList.toggle(isAscending ? 'desc' : 'asc');
+        });
+    });
+}
+
+function makeSortable2() {
     const table = document.querySelector('#table1');
     const headers = table.querySelectorAll('.table-header');
 
@@ -40,4 +62,5 @@ function sortTableByColumn(table, column, asc = true) {
     // Thêm các hàng đã sắp xếp trở lại vào bảng
     tBody.append(...sortedRows);
 }
-makeSortable();
+makeSortable1();
+makeSortable2();

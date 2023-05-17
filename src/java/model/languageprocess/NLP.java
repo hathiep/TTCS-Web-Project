@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.StringTokenizer;
-import java.util.TreeSet;
 
 /**
  *
  * @author havanthiep
  */
 public class NLP {
+
     private String sentence;
-    private ArrayList<String> list = new ArrayList<>();
-    private TreeSet<String> set = new TreeSet<>();
+    private ArrayList<String> listWord = new ArrayList<>();
+    private HashMap<String, Integer> mapWord = new LinkedHashMap<>();
 
     public NLP() {
     }
@@ -26,34 +26,33 @@ public class NLP {
         this.sentence = sentence;
     }
 
-    public ArrayList<String> getList() {
-        StringTokenizer st = new StringTokenizer(sentence);
-        while(st.hasMoreTokens()){
-            String t = st.nextToken();
-            list.add(t);
+    public ArrayList<String> getListWord() {
+
+        StringTokenizer st = new StringTokenizer(sentence, " \t\n\r\f,.;:?!*#@$%^&\"'-_()[]{}\\/");
+
+        while (st.hasMoreTokens()) {
+            String token = st.nextToken();
+            listWord.add(token);
         }
-        return list;
+        return listWord;
     }
-    
-    public HashMap<String, Integer> getMap() {
-        
-        HashMap<String, Integer> map = new LinkedHashMap<>();
-        
-        ArrayList<String> list2 = new ArrayList<>();
-        for(String i : list){
-            list2.add(i.toLowerCase());
+
+    public HashMap<String, Integer> getMapWord() {
+
+        ArrayList<String> list = new ArrayList<>();
+        for (String i : listWord) {
+            list.add(i.toLowerCase());
         }
 
-        for (String word : list2) {
-            if (map.containsKey(word)) {
-                map.put(word, map.get(word) + 1);
+        for (String word : list) {
+            if (mapWord.containsKey(word)) {
+                mapWord.put(word, mapWord.get(word) + 1);
             } else {
-                map.put(word, 1);
+                mapWord.put(word, 1);
             }
         }
 
-        return map;
+        return mapWord;
     }
 
-    
 }

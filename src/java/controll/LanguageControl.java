@@ -34,19 +34,20 @@ public class LanguageControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String sentence = request.getParameter("sentence");
-        ArrayList<String> list = new ArrayList<>();
-        HashMap<String, Integer> map = new LinkedHashMap<>();
+        ArrayList<String> listWord = new ArrayList<>();
+        HashMap<String, Integer> mapWord = new LinkedHashMap<>();
         if(sentence!=null){
             NLP nlp = new NLP(sentence);
-            list = nlp.getList();
-            map = nlp.getMap();
+            listWord = nlp.getListWord();
+            mapWord = nlp.getMapWord();
         }
         else{
-            list.add("");
-            map.put("", 0);
+            listWord.add("");
+            mapWord.put("", 0);
         }
-        request.setAttribute("listWord", list);
-        request.setAttribute("mapWord", map);
+        request.setAttribute("sentence", sentence);
+        request.setAttribute("listWord", listWord);
+        request.setAttribute("mapWord", mapWord);
         request.getRequestDispatcher("languageprocess.jsp").forward(request, response);
     } 
 
